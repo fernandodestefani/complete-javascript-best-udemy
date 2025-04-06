@@ -27,5 +27,13 @@ btnCloseModal.addEventListener("click", closeModal);
 
 overlay.addEventListener("click", closeModal); // without (), otherwise the function will be executed regardless the click or not
 
+//key pressing events are a type of global events, because of this we use them in the document as a whole
+document.addEventListener('keydown', function(e) {
+  // console.log(e.key);
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    closeModal();
+  }
+});
+
 
 
