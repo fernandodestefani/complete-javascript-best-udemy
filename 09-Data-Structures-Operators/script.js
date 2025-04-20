@@ -30,10 +30,6 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  order: function (starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
-  },
-
   openingHours: {
     thu: {
       open: 12,
@@ -48,7 +44,24 @@ const restaurant = {
       close: 24,
     },
   },
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
+  },
+  orderDelivery: function ({starterIndex = 1, mainIndex = 0, time = '20:00', address}) { // destructuring a object in a function
+    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+  },
 };
+
+// we can pass objects as parameters - generally used for external libraries where you dont know the order of the parameters
+restaurant.orderDelivery({
+  time: '22:30', 
+  address: 'Via del Sole, 21',
+  mainIndex: 2, 
+  starterIndex: 2,
+});
+
+//
 
 // destructuring is simply breaking complex data structure down to simpler data structure like a variable
 /* const arr = [2, 3, 4];
@@ -90,3 +103,28 @@ console.log(main, secondary); */
 /* const [p=1, q=1, r=1] = [8, 9];
 console.log(p, q, r); */
 
+// Destructuring objects
+// we need to write the exact property names to extract variables from the object
+// the order doesnt matter => we dont need to skip elements
+const {name, openingHours, categories} = restaurant;
+console.log(name, openingHours, categories);
+
+// what if we want the names to be different from the property names
+const {name: restaurantName, openingHours: hours, categories: tags } = restaurant;
+console.log(restaurantName, hours, tags);
+
+// Default values
+// we can set default values to avoid undefined when dealing with third part data
+const { menu = [], starterMenu: starters = []} = restaurant;
+console.log(menu, starters);
+
+// Mutating variables 
+let a = 111;
+let b = 999;
+const obj = {a: 23, b: 7, c: 14};
+({a, b} = obj); // wrapp this destructuring assignments into parentesis
+console.log(a, b);
+
+// Nested objects
+const {fri: {open, close}} = openingHours;
+console.log(open, close);
