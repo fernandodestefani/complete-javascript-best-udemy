@@ -53,6 +53,10 @@ const restaurant = {
   },
   orderPasta: function(ing1, ing2, ing3){
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`);
+  },
+  orderPizza: function(mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
   }
 };
 
@@ -170,3 +174,38 @@ restaurant.orderPasta(...ingredients); */
 //const restaurantCopy = {...restaurant};
 
 // Rest Pattern and Parameters
+// its the opposite of the spread operator: pack elements into an array
+
+// 1) DESTRUCTURING
+// SPREAD, because on RIGHT side of = 
+/* const arr = [1, 2, ...[3, 4]];
+
+// REST, because on LEFT side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(others); // it is called rest because it puts the rest of the elements into an array
+
+const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu]; // the rest pattern must be the last in the destructuring assingment and must exist only one!
+console.log(pizza, risotto, otherFood);
+
+// Objects
+const {sat, ...weekdays} = restaurant.openingHours;
+console.log(weekdays);
+
+// 2) FUNCTIONS
+// SPREAD => passes multiple arguments as parameters
+
+// REST
+const add = function(...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+add(2,3);
+add(5,3,7,2);
+add(8,2,5,3,2,1,4);
+
+const x = [23, 5, 7];
+add(...x);
+ */
+
+// restaurant.orderPizza("mushrooms", 'onions', 'olives', 'spinach');
