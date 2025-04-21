@@ -51,6 +51,9 @@ const restaurant = {
   orderDelivery: function ({starterIndex = 1, mainIndex = 0, time = '20:00', address}) { // destructuring a object in a function
     console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
   },
+  orderPasta: function(ing1, ing2, ing3){
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`);
+  }
 };
 
 // we can pass objects as parameters - generally used for external libraries where you dont know the order of the parameters
@@ -106,25 +109,64 @@ console.log(p, q, r); */
 // Destructuring objects
 // we need to write the exact property names to extract variables from the object
 // the order doesnt matter => we dont need to skip elements
-const {name, openingHours, categories} = restaurant;
-console.log(name, openingHours, categories);
+//const {name, openingHours, categories} = restaurant;
+//console.log(name, openingHours, categories);
 
 // what if we want the names to be different from the property names
-const {name: restaurantName, openingHours: hours, categories: tags } = restaurant;
-console.log(restaurantName, hours, tags);
+//const {name: restaurantName, openingHours: hours, categories: tags } = restaurant;
+//console.log(restaurantName, hours, tags);
 
 // Default values
 // we can set default values to avoid undefined when dealing with third part data
-const { menu = [], starterMenu: starters = []} = restaurant;
-console.log(menu, starters);
+//const { menu = [], starterMenu: starters = []} = restaurant;
+//console.log(menu, starters);
 
 // Mutating variables 
-let a = 111;
-let b = 999;
-const obj = {a: 23, b: 7, c: 14};
-({a, b} = obj); // wrapp this destructuring assignments into parentesis
-console.log(a, b);
+//let a = 111;
+//let b = 999;
+//const obj = {a: 23, b: 7, c: 14};
+//({a, b} = obj); // wrapp this destructuring assignments into parentesis
+//console.log(a, b);
 
 // Nested objects
-const {fri: {open, close}} = openingHours;
-console.log(open, close);
+//const {fri: {open, close}} = openingHours;
+//console.log(open, close);
+
+// The spread operator (...)
+/* const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+console.log(...newArr);
+ */
+//const newMenu = [...restaurant.mainMenu, "Gnocci"]; // we are building a new array from scratch 
+//console.log(newMenu);
+
+// Uses
+// Shallow copies 
+//const mainMenuCopy = [...restaurant.mainMenu];
+
+// Join 2 arrays
+/* const menu = [...restaurant.mainMenu, ...restaurant.starterMenu]
+console.log(menu);
+ */
+// most of data structures in JS are iterables, except objects
+// Iterables: arrays, strings, maps, sets
+/* const str = 'Fernando';
+const letters = [...str, " ", "D."];
+console.log(letters);
+*/
+//we can only use the spread operator when building an array or passing values into a function
+//console.log(...str);
+
+/* const ingredients = [prompt("Lets make pasta! Ingredient 1:"), prompt("Ingredient 2:"), prompt("Ingredient 3:")];
+console.log(ingredients);
+restaurant.orderPasta(...ingredients); */
+// Objects
+//const newRestaurant = {foundedIn: 1998, ...restaurant, founder: "Guiseppe"};
+//console.log(newRestaurant);
+// Copy
+//const restaurantCopy = {...restaurant};
+
+// Rest Pattern and Parameters
