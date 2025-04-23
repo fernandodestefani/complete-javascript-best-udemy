@@ -209,3 +209,34 @@ add(...x);
  */
 
 // restaurant.orderPizza("mushrooms", 'onions', 'olives', 'spinach');
+
+// Short Circuiting (&& and ||)
+// Logical operators can use ANY data type, return ANY data type, short-circuiting
+console.log(3 || 'Fernando'); // if first value is a truthy value, it immediately returns that first value with seeing the second value - thats why its called short-circuiting
+console.log("" || 'Fernando');
+console.log(true || 0);
+console.log(undefined || null);
+console.log(undefined || 0 || "" || 'Fernando' || 23 || null);
+
+// restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+// setting default methods instead of using thernary operators or if/else statement
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2); 
+//both will not work if the number of guests is 0, because 0 is a falsy value
+
+console.log('==== AND ====');
+//work on the opposite way than || operator
+console.log(0 && 'Fernando'); // if its falsy, short-circuiting returning the first value
+console.log(7 && 'Fernando'); // if its truthy, the second value is returned
+console.log("Hello" && 23 && null && 'Fernando');
+
+// practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", 'spinach');
+}
+
+//its the same that
+restaurant.orderPizza || restaurant.orderPizza("mushrooms", 'spinach'); // useful to execute codes if the first one is truthy

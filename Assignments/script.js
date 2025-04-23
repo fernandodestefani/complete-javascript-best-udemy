@@ -406,7 +406,7 @@ const [fiveStarRatings, oneStarRatings, threeStarRatings=0] = ratingStars;
 // console.log(title, author, ISBN);
 
 // 2.2
-const {keywords: tags} = books[0];
+/* const {keywords: tags} = books[0];
 console.log(tags);
 
 // 2.3
@@ -441,3 +441,33 @@ const spellWord = function(str) {
 };
 
 spellWord("JavaScript");
+ */
+
+// Rest pattern and Parameters
+// 4.1
+/* const [mainkeyword, ...rest] = books[0].keywords;
+console.log(mainkeyword, rest);
+ */
+// 4.2
+/* const {publisher: bookPublisher, ...restOfTheBook} = books[1];
+console.log(bookPublisher);
+ */
+// 4.3
+/* const printBookAuthorsCount = function(title, ...authors) {
+  console.log(`The book "${title}" has ${authors.length} authors`);
+};
+
+printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne'); */
+
+//5.1
+/* const hasExamplesInJava = function (book) {
+  return book.programmingLanguage === "Java" || 'no data available';
+};
+
+hasExamplesInJava(books[1]);
+ */
+//5.2
+/* for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent && console.log(`${books[i].title} provides online content`);
+} */
+
