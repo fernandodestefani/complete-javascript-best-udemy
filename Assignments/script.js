@@ -471,3 +471,7 @@ hasExamplesInJava(books[1]);
   books[i].onlineContent && console.log(`${books[i].title} provides online content`);
 } */
 
+// The Nullish Coalescing Operator ??
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent ?? console.log(`"${books[i].title}" provides NO data about its online content.`);
+}

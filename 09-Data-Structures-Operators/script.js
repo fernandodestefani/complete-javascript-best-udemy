@@ -212,7 +212,7 @@ add(...x);
 
 // Short Circuiting (&& and ||)
 // Logical operators can use ANY data type, return ANY data type, short-circuiting
-console.log(3 || 'Fernando'); // if first value is a truthy value, it immediately returns that first value with seeing the second value - thats why its called short-circuiting
+/* console.log(3 || 'Fernando'); // if first value is a truthy value, it immediately returns that first value with seeing the second value - thats why its called short-circuiting
 console.log("" || 'Fernando');
 console.log(true || 0);
 console.log(undefined || null);
@@ -240,3 +240,45 @@ if (restaurant.orderPizza) {
 
 //its the same that
 restaurant.orderPizza || restaurant.orderPizza("mushrooms", 'spinach'); // useful to execute codes if the first one is truthy
+ */
+
+// Nullish Coalescing Operator ??
+/* restaurant.numGuests = 0;
+*/
+//const guests = restaurant.numGuests || 10;
+//console.log(guests);
+// it fixes such error
+// it works with the idea of Nullish values and not falsy vallues: null and undefined; NOT include 0 or ''
+/* const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect);
+ */
+
+// Logical assignment operatos
+/* const rest1 = {
+  name: "Capri",
+//  numGuests: 20,
+  numGuests: 0,
+}
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: "Giovanni Rossi",
+}
+ */
+// OR assignment operator 
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+//rest1.numGuests ||= 10;
+//rest2.numGuests ||= 10;
+// it may not work with 0 because it is a falsy value
+
+// ?? nullish assignment operator (null or undefined)
+/* rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+// AND assignment operator
+rest1.owner &&= 'ANONYMOUS';
+rest2.owner &&= "ANONYMOUS";
+
+console.log(rest1, rest2);
+ */
