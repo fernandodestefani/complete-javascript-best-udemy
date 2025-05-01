@@ -1,35 +1,34 @@
-'use strict';
-
+"use strict";
 
 // Data needed for a later exercise
 const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+  "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
 const italianFoods = new Set([
-  'pasta',
-  'gnocchi',
-  'tomatoes',
-  'olive oil',
-  'garlic',
-  'basil',
+  "pasta",
+  "gnocchi",
+  "tomatoes",
+  "olive oil",
+  "garlic",
+  "basil",
 ]);
 
 const mexicanFoods = new Set([
-  'tortillas',
-  'beans',
-  'rice',
-  'tomatoes',
-  'avocado',
-  'garlic',
+  "tortillas",
+  "beans",
+  "rice",
+  "tomatoes",
+  "avocado",
+  "garlic",
 ]);
 
 // Data needed for first part of the section
 const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  name: "Classico Italiano",
+  location: "Via Angelo Tavanti 23, Firenze, Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
   openingHours: {
     thu: {
       open: 12,
@@ -46,25 +45,35 @@ const restaurant = {
   },
 
   order: function (starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-  orderDelivery: function ({starterIndex = 1, mainIndex = 0, time = '20:00', address}) { // destructuring a object in a function
-    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = "20:00",
+    address,
+  }) {
+    // destructuring a object in a function
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
   },
-  orderPasta: function(ing1, ing2, ing3){
-    console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`);
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
   },
-  orderPizza: function(mainIngredient, ...otherIngredients) {
+  orderPizza: function (mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     console.log(otherIngredients);
-  }
+  },
 };
 
 // we can pass objects as parameters - generally used for external libraries where you dont know the order of the parameters
 restaurant.orderDelivery({
-  time: '22:30', 
-  address: 'Via del Sole, 21',
-  mainIndex: 2, 
+  time: "22:30",
+  address: "Via del Sole, 21",
+  mainIndex: 2,
   starterIndex: 2,
 });
 
@@ -125,7 +134,7 @@ console.log(p, q, r); */
 //const { menu = [], starterMenu: starters = []} = restaurant;
 //console.log(menu, starters);
 
-// Mutating variables 
+// Mutating variables
 //let a = 111;
 //let b = 999;
 //const obj = {a: 23, b: 7, c: 14};
@@ -144,11 +153,11 @@ const newArr = [1, 2, ...arr];
 console.log(newArr);
 console.log(...newArr);
  */
-//const newMenu = [...restaurant.mainMenu, "Gnocci"]; // we are building a new array from scratch 
+//const newMenu = [...restaurant.mainMenu, "Gnocci"]; // we are building a new array from scratch
 //console.log(newMenu);
 
 // Uses
-// Shallow copies 
+// Shallow copies
 //const mainMenuCopy = [...restaurant.mainMenu];
 
 // Join 2 arrays
@@ -177,7 +186,7 @@ restaurant.orderPasta(...ingredients); */
 // its the opposite of the spread operator: pack elements into an array
 
 // 1) DESTRUCTURING
-// SPREAD, because on RIGHT side of = 
+// SPREAD, because on RIGHT side of =
 /* const arr = [1, 2, ...[3, 4]];
 
 // REST, because on LEFT side of =
@@ -244,7 +253,7 @@ restaurant.orderPizza || restaurant.orderPizza("mushrooms", 'spinach'); // usefu
 
 // Nullish Coalescing Operator ??
 /* restaurant.numGuests = 0;
-*/
+ */
 //const guests = restaurant.numGuests || 10;
 //console.log(guests);
 // it fixes such error
@@ -265,7 +274,7 @@ const rest2 = {
   owner: "Giovanni Rossi",
 }
  */
-// OR assignment operator 
+// OR assignment operator
 // rest1.numGuests = rest1.numGuests || 10;
 // rest2.numGuests = rest2.numGuests || 10;
 //rest1.numGuests ||= 10;
@@ -282,3 +291,91 @@ rest2.owner &&= "ANONYMOUS";
 
 console.log(rest1, rest2);
  */
+
+// CHALLENGE 1
+
+/* const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// task 1
+const [players1, players2] = game.players;
+console.log(players1, players2);
+//const players1 = game.players[0];
+//const players2 = game.players[1];
+
+// task 2
+const [gk, ...fieldPlayers] = players1;
+
+// task 3
+const allPlayers = [...players1, ...players2];
+
+// task 4
+const players1Final = [...players1, "Thiago", "Coutinho", "Perisic"];
+
+// task 5
+const {team1, x: draw, team2} = game.odds;
+
+// task 6
+const printGoals = function(...numbers){
+  for(let i = 0; i < numbers.length; i++){
+    console.log(numbers[i]);
+  }
+  console.log(game.scored.length);
+};
+// printGoals(...game.scored)
+
+// task 7
+team1 < team2 && console.log(`${game.team1} is more likely to win 🏆`);
+team2 < team1 && console.log(`${game.team2} is more likely to win 🏆`); */
+
+// The for-of Loop
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+//when you also want the index, besides the object:
+/* for (const item of menu.entries()) {
+  console.log(`${item[0] + 1}: ${item[1]}`);
+} */
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i+1}: ${el}`);
+}

@@ -472,6 +472,50 @@ hasExamplesInJava(books[1]);
 } */
 
 // The Nullish Coalescing Operator ??
-for (let i = 0; i < books.length; i++) {
+/* for (let i = 0; i < books.length; i++) {
   books[i].onlineContent ?? console.log(`"${books[i].title}" provides NO data about its online content.`);
+} */
+
+// Logical Assignments Operators
+// 7.1
+/* for (let i = 0; i<books.length; i++) {
+  books[i].edition ||= 1; 
 }
+ */
+// 7.2
+/* for (let i = 0; i < books.length; i++) {
+  if (books[i].thirdParty.goodreads.rating < 4.2){
+    books[i].highlighted = false;
+  }
+}
+
+for (let i = 0; i < books.length; i++) {
+  books[i].highlighted &&= !(books[i].thirdParty.goodreads.rating < 4.2)
+} */
+
+// for-of loop
+// 8.1
+/* let pageSum = 0;
+for (let book of books) {
+  pageSum += book.pages;
+} 
+console.log(pageSum);
+ */
+
+// 8.2
+let allAuthors = [];
+for (let book of books) {
+  if (typeof book.author === 'string') {
+    allAuthors.push(book.author);
+  } else {
+    for (let author of book.author) {
+      allAuthors.push(author);
+    }
+  }
+}
+//console.log(allAuthors);
+
+// 8.3
+/* for (const [i, author] of allAuthors.entries()) {
+  console.log(`${i + 1}: ${author}`);
+} */
