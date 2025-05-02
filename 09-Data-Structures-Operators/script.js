@@ -23,28 +23,32 @@ const mexicanFoods = new Set([
 ]);
 
 // Data needed for first part of the section
+const weekdays = ['thu', 'fri', 'sat']
+
+const openingHours = {
+  [weekdays[0]]: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
   mainMenu: ["Pizza", "Pasta", "Risotto"],
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-
-  order: function (starterIndex, mainIndex) {
+  // ES6 enhanced object literals
+  openingHours,
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
   orderDelivery: function ({
@@ -367,15 +371,39 @@ team1 < team2 && console.log(`${game.team1} is more likely to win 🏆`);
 team2 < team1 && console.log(`${game.team2} is more likely to win 🏆`); */
 
 // The for-of Loop
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-for (const item of menu) console.log(item);
+// for (const item of menu) console.log(item);
 
 //when you also want the index, besides the object:
 /* for (const item of menu.entries()) {
   console.log(`${item[0] + 1}: ${item[1]}`);
 } */
 
-for (const [i, el] of menu.entries()) {
+/* for (const [i, el] of menu.entries()) {
   console.log(`${i+1}: ${el}`);
-}
+} */
+
+// enhanced object literals
+// console.log(restaurant);
+
+
+// Optional Chaining (?.) - when a certain property doesnt exist, undefined is returned avoind error
+if (restaurant.openingHours && restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open); 
+// WITH OPTIONAL CHAINING
+// console.log(restaurant.openingHours.mon?.open); // only if mon exists that open will be read from there
+// console.log(restaurant.openingHours?.mon?.open);
+// Exameple
+/* const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`);
+} */
+
+// Methods
+/* console.log(restaurant.order?.(0,1) ?? 'Method does not exist'); // checking if a method does exist before calling it
+console.log(restaurant.buy?.() ?? 'Method does not exist');  */
+
+// Arrays
+const users = [{name: 'Fernando', email: 'henriqueorei@gmail.com'}];
+console.log(users[0]?.name ?? "User array empty");
