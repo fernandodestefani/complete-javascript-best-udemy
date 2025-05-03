@@ -58,9 +58,9 @@ const restaurant = {
     address,
   }) {
     // destructuring a object in a function
-    console.log(
+    /* console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
+    ); */
   },
   orderPasta: function (ing1, ing2, ing3) {
     console.log(
@@ -389,8 +389,8 @@ team2 < team1 && console.log(`${game.team2} is more likely to win 🏆`); */
 
 
 // Optional Chaining (?.) - when a certain property doesnt exist, undefined is returned avoind error
-if (restaurant.openingHours && restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open); 
-// WITH OPTIONAL CHAINING
+/* if (restaurant.openingHours && restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open); 
+ */// WITH OPTIONAL CHAINING
 // console.log(restaurant.openingHours.mon?.open); // only if mon exists that open will be read from there
 // console.log(restaurant.openingHours?.mon?.open);
 // Exameple
@@ -405,5 +405,27 @@ for (const day of days) {
 console.log(restaurant.buy?.() ?? 'Method does not exist');  */
 
 // Arrays
-const users = [{name: 'Fernando', email: 'henriqueorei@gmail.com'}];
-console.log(users[0]?.name ?? "User array empty");
+/* const users = [{name: 'Fernando', email: 'henriqueorei@gmail.com'}];
+console.log(users[0]?.name ?? "User array empty"); */
+
+// Looping Objects
+// looping through keys (property NAMES)
+const properties = Object.keys(openingHours);
+// console.log(properties); transform openingHours keys into an array
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of properties){
+  openStr += `${day}, `;
+}
+// console.log(openStr);
+
+// Property VALUES
+const values = Object.values(openingHours);
+// console.log(values);
+
+// Entire Object
+const entries = Object.entries(openingHours);
+// console.log(entries);
+// [key, value]
+for (const [key, {open, close}] of entries){
+  console.log(`On ${key}, we open at ${open} and close at ${close}`);
+}
