@@ -410,22 +410,87 @@ console.log(users[0]?.name ?? "User array empty"); */
 
 // Looping Objects
 // looping through keys (property NAMES)
-const properties = Object.keys(openingHours);
+//const properties = Object.keys(openingHours);
 // console.log(properties); transform openingHours keys into an array
-let openStr = `We are open on ${properties.length} days: `;
+/* let openStr = `We are open on ${properties.length} days: `;
 for (const day of properties){
   openStr += `${day}, `;
 }
-// console.log(openStr);
+ */// console.log(openStr);
 
 // Property VALUES
-const values = Object.values(openingHours);
+//const values = Object.values(openingHours);
 // console.log(values);
 
 // Entire Object
-const entries = Object.entries(openingHours);
+//const entries = Object.entries(openingHours);
 // console.log(entries);
 // [key, value]
-for (const [key, {open, close}] of entries){
+/* for (const [key, {open, close}] of entries){
   console.log(`On ${key}, we open at ${open} and close at ${close}`);
+} */
+
+// Challenge 2
+const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// 1
+for (const [i, player] of game.scored.entries()) {
+  console.log(`Goal ${i + 1}: ${player}`);
+};
+
+// 2
+let sum = 0;
+let cont = 0;
+for (const value of Object.values(game.odds)) {
+  sum += value;
+  cont += 1;
 }
+console.log(sum/cont);
+
+// 3
+for (const [key, value] of Object.entries(game.odds)){
+  if (key === 'x') {
+    console.log(`Odd of draw: ${value}`); 
+  } else {
+  console.log(`Odd of victory ${key}: ${value}`);
+  };
+};
