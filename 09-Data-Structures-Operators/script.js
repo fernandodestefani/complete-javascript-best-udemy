@@ -23,7 +23,7 @@ const mexicanFoods = new Set([
 ]);
 
 // Data needed for first part of the section
-const weekdays = ['thu', 'fri', 'sat']
+const weekdays = ["thu", "fri", "sat"];
 
 const openingHours = {
   [weekdays[0]]: {
@@ -387,10 +387,9 @@ team2 < team1 && console.log(`${game.team2} is more likely to win 🏆`); */
 // enhanced object literals
 // console.log(restaurant);
 
-
 // Optional Chaining (?.) - when a certain property doesnt exist, undefined is returned avoind error
-/* if (restaurant.openingHours && restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open); 
- */// WITH OPTIONAL CHAINING
+/* if (restaurant.openingHours && restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open);
+ */ // WITH OPTIONAL CHAINING
 // console.log(restaurant.openingHours.mon?.open); // only if mon exists that open will be read from there
 // console.log(restaurant.openingHours?.mon?.open);
 // Exameple
@@ -416,7 +415,7 @@ console.log(users[0]?.name ?? "User array empty"); */
 for (const day of properties){
   openStr += `${day}, `;
 }
- */// console.log(openStr);
+ */ // console.log(openStr);
 
 // Property VALUES
 //const values = Object.values(openingHours);
@@ -536,7 +535,6 @@ console.log(rest.get(arr));
 // this is useful when working with DOM
 rest.set(document.querySelector('h1'), 'Heading') */
 
-
 // Maps Iteration
 // populating a map without the set method
 /* const question = new Map([
@@ -588,3 +586,35 @@ JSON data format is the same as objects in JS
 */
 
 // Challenge Code #3
+/* const gameEvents = new Map([
+  [17, "⚽ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow card"],
+  [69, "🔴 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽ GOAL"],
+  [80, "⚽ GOAL"],
+  [92, "🔶 Yellow card"],
+]);
+
+//01
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+//02
+gameEvents.delete(64);
+console.log(gameEvents);
+
+//03
+console.log(`An event happened, on average, every ${90/(gameEvents.size)} minutes`);
+
+//04
+for (const [key, value] of gameEvents){
+  if (key <= 45) console.log(`[FIRST HALF] ${key}: ${value}`);
+  else console.log(`[SECOND HALF] ${key}: ${value}`);
+} */
+
+// Working with Strings Part 1
