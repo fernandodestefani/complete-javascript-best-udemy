@@ -498,7 +498,7 @@ for (const [key, value] of Object.entries(game.odds)){
 // Maps: fundamentals
 // objects - keys are basically all strings
 // maps also have key-value pair but we can have any type of keys
-const rest = new Map;
+/* const rest = new Map;
 //to fill up the map we can use the set method
 rest.set('name', 'Classico Italiano');
 rest.set(1, 'Firenze, Italy');
@@ -534,5 +534,57 @@ const arr = [1, 2];
 rest.set(arr, 'test');
 console.log(rest.get(arr));
 // this is useful when working with DOM
-rest.set(document.querySelector('h1'), 'Heading')
+rest.set(document.querySelector('h1'), 'Heading') */
 
+
+// Maps Iteration
+// populating a map without the set method
+/* const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, "Javascript"],
+  ['correct', 3],
+  [true, 'Correct 🎉'],
+  [false, 'Try again!'],
+])
+console.log(question);
+*/
+// this structure is similar to Object.entries(), because it's a array of arrays
+// there is an easy way to convert objects to maps
+// Convert object to map
+/* console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap); */
+
+// map is iterable, different from objects, so we can iterate through them directly
+// Quiz app
+/* console.log(question.get('question'));
+for (const [key, value] of question){
+  if (typeof key === "number") console.log(`Answer ${key}: ${value}`);
+}
+*/
+/* const answer = Number(prompt('Your answer'));
+console.log(answer); */
+/* const answer = 2;
+console.log(question.get(answer === question.get('correct')));
+ */
+// convert map to array
+/* console.log([...question]);
+console.log([...question.keys()]);
+console.log([...question.values()]); */
+
+// Summary: which data structure to use?
+/* 
+arrays, objects, sets and maps
+simple list => arrays or sets
+-arrays use when you need ordered list of values (might contain duplicates), use when you need to manipulate data because there are tons of array methods
+-sets use when you need to work with unique values, use when high-performance is really important and use to remove duplicates from arrays  
+
+key/value pairs => objects or maps - keys allow us to describe values
+JSON data format is the same as objects in JS
+- objects => more traditional key/value store ('abused' projects) and easier to write and access values with . and []. in conclusion use when you need to include functions (methods), use when working with JSON
+- maps => better performance, keys can have any data type, easy to iterate easy to compute size. in conclusion, use when you simply need to map key to values; use when you need keys that are NOT strings
+*/
+
+// Challenge Code #3
