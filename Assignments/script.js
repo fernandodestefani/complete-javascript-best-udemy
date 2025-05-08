@@ -600,7 +600,7 @@ for (const [key, value] of firstBookMap) {
 
 // Working with strings Part 1
 // 15.1
-const isbn = books[0].ISBN;
+/* const isbn = books[0].ISBN;
 console.log(isbn[6]);
 console.log(isbn[4]);
 console.log(isbn[9]);
@@ -618,4 +618,35 @@ const isContributor = function(authorName) {
   if (authorName.indexOf("Contributor") !== -1) console.log(true); 
   else console.log(false);
 }
-isContributor('Julie Sussman (Contributor)');
+isContributor('Julie Sussman (Contributor)'); */
+
+// Working with Strings Part 2
+// 16.1
+const normalizeAuthorName = function(author) {
+  const authorTrimmed = author.trim();
+  const authorFirstLastNames = authorTrimmed.replace("(Contributor)", '');
+  const authorNamesLowerCase = authorFirstLastNames.toLowerCase();
+  const authorFirstName = authorNamesLowerCase[0].toUpperCase() + authorNamesLowerCase.slice(1, authorNamesLowerCase.indexOf(" "));
+  const authorLastNameLowerCase = authorNamesLowerCase.slice(authorNamesLowerCase.indexOf(" ") + 1);
+  const authorLastName = authorLastNameLowerCase[0].toUpperCase() + authorLastNameLowerCase.slice(1);
+  return `${authorFirstName} ${authorLastName}`
+}
+// console.log(normalizeAuthorName("JuliE sussMan (Contributor)"));
+
+// 16.2
+const newBookTitle = books[1].title.replace('Programs', 'Software');
+// console.log(newBookTitle);
+
+// 16.3
+const logBookTheme = function(bookTitle){
+  const titleStr = bookTitle.toLowerCase();
+  if (titleStr.startsWith('computer')) {
+    console.log("This book is about computers");
+  } else if (titleStr.includes('algorithms') && titleStr.includes("structures")) {
+    console.log("This book is about algorithms and data structures");
+  } else if (titleStr.endsWith("systems") || titleStr.endsWith("system") && !titleStr.includes("operating")) {
+    console.log("This book is about some systems, but definitely not about operating systems");
+  }
+}
+
+logBookTheme(books[2].title);
