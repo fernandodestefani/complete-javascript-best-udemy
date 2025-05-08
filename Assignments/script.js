@@ -573,7 +573,7 @@ console.log(newArr); */
 
 // Maps Fundamentals
 // 13.1 
-const bookMap = new Map([['title', 'Clean Code'], ['author', 'Robert C. Martin']]);
+/* const bookMap = new Map([['title', 'Clean Code'], ['author', 'Robert C. Martin']]);
 console.log(bookMap);
 
 // 13.2
@@ -596,4 +596,26 @@ console.log(firstBookMap);
 // 14.2 
 for (const [key, value] of firstBookMap) {
   if (typeof value === "number") console.log(key);
+} */
+
+// Working with strings Part 1
+// 15.1
+const isbn = books[0].ISBN;
+console.log(isbn[6]);
+console.log(isbn[4]);
+console.log(isbn[9]);
+console.log(isbn[8]);
+
+// 15.2
+const quote = 'A computer once beat me at chess, but it was no match for me at kick boxing';
+console.log(quote.indexOf("chess"));
+
+// 15.3
+console.log(quote.slice(quote.indexOf("boxing")));
+
+// 15.4
+const isContributor = function(authorName) {
+  if (authorName.indexOf("Contributor") !== -1) console.log(true); 
+  else console.log(false);
 }
+isContributor('Julie Sussman (Contributor)');
