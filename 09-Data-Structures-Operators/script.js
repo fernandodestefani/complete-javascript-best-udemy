@@ -657,7 +657,7 @@ checkMiddleSeat('3E') */
 
 // Working with Strings Part 2
 // Changing cases
-const airline = "TAP Air Portugal";
+/* const airline = "TAP Air Portugal";
 console.log(airline.toLowerCase());
 console.log(airline.toUpperCase());
 
@@ -694,10 +694,10 @@ console.log(plane.startsWith("Air"));
 
 if (plane.startsWith("Airbus") && plane.endsWith("neo")){
   console.log("Part of the NEW Airbus family");
-}
+} */
 
 // Practice exercise
-const checkBaggage = function(items) {
+/* const checkBaggage = function(items) {
   const baggage = items.toLowerCase();
   if (baggage.includes("knife") || baggage.includes("gun")) {
     console.log("You are NOT allowed on board");
@@ -708,4 +708,49 @@ const checkBaggage = function(items) {
 
 checkBaggage('I have a laptop, some Food and a pocket Knife');
 checkBaggage("Socks and camera");
-checkBaggage("Got some snacks and a gun for protection");
+checkBaggage("Got some snacks and a gun for protection"); */
+
+// Working with Strings Part 3
+// split and join 
+// split - store the splited elements into an array
+// console.log("Fernando Destefani".split(" ")); 
+const [firstName, lastName] = 'Fernando Destefani'.split(" ");
+const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log(newName);
+
+const capitalizeName = function(name) {
+  const names = name.split(" ");
+  const namesUpper = [];
+
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1).toLowerCase());
+  }
+  console.log(namesUpper.join(" "));
+}
+
+capitalizeName('jessica ann smith davis');
+capitalizeName("fernando destefani")
+
+// Padding
+const message = "Go to gate 23!"
+console.log(message.padStart(25, "=-").padEnd(35, '=-'));
+
+const maskCreditCard = function(number){
+  const str = number + ''; //converting a number to a string
+  const last = str.slice(-4);
+  return last.padStart(str.length, "*");
+}
+
+console.log(maskCreditCard(34545324239487564));
+
+// Repeat
+const message2 = 'Bad weather... All Departues Delayed... ';
+console.log(message2.repeat(5));
+
+const planesInLine = function(n) {
+  console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
+}
+
+planesInLine(3)
+planesInLine(6)
+planesInLine(12)

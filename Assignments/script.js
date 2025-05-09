@@ -649,4 +649,38 @@ const logBookTheme = function(bookTitle){
   }
 }
 
-logBookTheme(books[2].title);
+// logBookTheme(books[2].title);
+
+// Working with Strings 3
+// 17.1
+const bookCategories = 'science;computing;computer science;algorithms;business;operating systems;networking;electronics';
+
+const logBookCategories = function(categories){
+  for (const categorie of categories.split(";")){
+    console.log(categorie);
+  }
+};
+
+// logBookCategories(bookCategories);
+
+//17.2
+const getKeywordsAsString = function(books){
+  const keywords = [];
+  for (const book of books){
+    keywords.push(...book.keywords);
+  }
+  const uniqueKeywords = [...new Set(keywords)];
+  return uniqueKeywords.join(";")
+}
+// console.log(getKeywordsAsString(books));
+
+//17.3
+const bookChapters = [['The Basics', 14], ['Sorting', 254], ['Searching', 372], ['Graphs', 526], ['Strings', 706]];
+
+const logBookChapters = function(book) {
+  for (const [chapter, page] of book){
+    console.log(`${chapter.padEnd(25, "_")} ${page}`);
+  }
+}
+
+logBookChapters(bookChapters);
