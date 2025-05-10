@@ -751,6 +751,33 @@ const planesInLine = function(n) {
   console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
 }
 
-planesInLine(3)
+/* planesInLine(3)
 planesInLine(6)
-planesInLine(12)
+planesInLine(12) */
+
+// CHALLENGE CODE #4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+document.querySelector("button").addEventListener('click', function(){
+  const text = document.querySelector("textarea").value;
+  const rows = text.split('\n'); //enter
+  console.log(rows);
+
+  for (const [i, row] of rows.entries()){
+    const [first, second] = row.toLowerCase().trim().split("_");
+    const output = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i+1)}`);
+  }
+})
+
+/* const camelCaseConverter = function(underscore) {
+  // converting lower case and trimming the white space
+  underscore = underscore.toLowerCase().trim();
+  // spliting into an array
+  let [firstWord, secondWord] = underscore.split("_");
+  // capitalizing the secondWord
+  secondWord = secondWord[0].toUpperCase() + secondWord.slice(1);
+  // joining both first and secondWord and loging them into the console
+  console.log(firstWord + secondWord);
+}
+*/
