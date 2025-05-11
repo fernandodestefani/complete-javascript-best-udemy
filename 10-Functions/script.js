@@ -47,3 +47,25 @@ const checkIn = function(flightNum, passenger) {
 // we can pass functions as arguments to OTHER functions, return functions from functions and call methods on functions - function methods like bind
 // Higher-Order functions are functions that receive other functions AND/OR that return a new function
 // btnClose.addEventListener('click', greet) - greet is the callback function while addEventListener is the higher-order one 
+
+// Functions accepting callback functions
+const oneWord = function(str) {
+  return str.replace(/ /g, '').toLowerCase();
+}
+
+const upperFirstWord = function(str){
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ')
+}
+
+// Higher-order function
+const transformer = function(str, fn){
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+  console.log(`Transformed by: ${fn.name}`);
+}
+
+transformer('JavaScript is the best!', upperFirstWord); // we're only passing the value in, we are NOT calling the function!
+transformer('JavaScript is the best!', oneWord); //callback function
+// JS uses callbacks all the time!
+
