@@ -148,3 +148,35 @@ const addTax = (rate, value) => value + value*rate;
 const addVAT2 = addTaxRate(0.23);
 console.log(addVAT2(100)); */
 
+// CODING CHALLENGE #1
+const poll = {
+  question: "What is your favourite programming language?",
+  options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+// This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+  registerNewAnswer(){
+    const answer = Number(prompt("What is your favourite programming language? \n0: Javascript \n1: Python \n2: Rust \n3: C++ \n(Write option number):"))
+    if (typeof answer === 'number' && (answer === 0 || answer === 1 || answer === 2 || answer === 3 )){
+      this.answers[answer] ++;
+      this.displayResults()
+    } else {
+      alert(`${answer} is not an answer!`)
+    } 
+  },
+  displayResults(type="array") {
+    if (type === "array"){
+      console.log(this.answers);
+    } else if (type === "string"){
+      console.log(`Poll results are ${this.answers[0]}, ${this.answers[1]}, ${this.answers[2]}, ${this.answers[3]}`);
+    }
+  },
+};
+
+document.querySelector(".poll").addEventListener("click", poll.registerNewAnswer.bind(poll))
+
+// poll.registerNewAnswer();
+
+// CLOSURES
+const secureBooking = function(){
+  
+}
