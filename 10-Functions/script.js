@@ -172,11 +172,29 @@ const poll = {
   },
 };
 
-document.querySelector(".poll").addEventListener("click", poll.registerNewAnswer.bind(poll))
+//document.querySelector(".poll").addEventListener("click", poll.registerNewAnswer.bind(poll))
 
 // poll.registerNewAnswer();
 
 // CLOSURES
 const secureBooking = function(){
-  
+ let passengerCount = 0; // this varuable cannot be manipulated from outside 
+
+ return function(){
+  passengerCount++;
+  console.log(`${passengerCount} passengers`);
+ }
 }
+
+const booker = secureBooking();
+
+booker(); 
+booker();
+booker(); // how booker function updated the passengerCount from secureBooking since this function had already finished of executing?
+// closure makes a function remember all the variables that existed at the functions birthplace, allowing function returning functions
+// passengerCount is NOT garbage collected because it is reachable by a closure
+// a function has access to the variable environment VE of the execution context in which it was created. this linking is called closure
+// a closure gives a function access to all the variables of its parent function, even after that parent function has returned. the function keeps a reference to its outer scope, which preserves the scope chain throughout time
+// less formal: a closure is like a backpack that a function carries around wherever it goes. this backpack has all the variables that were present in the environment where the function was created.
+
+// MORE CLOSURE EXAMPLES
