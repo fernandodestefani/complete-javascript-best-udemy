@@ -177,7 +177,7 @@ const poll = {
 // poll.registerNewAnswer();
 
 // CLOSURES
-const secureBooking = function(){
+/* const secureBooking = function(){
  let passengerCount = 0; // this varuable cannot be manipulated from outside 
 
  return function(){
@@ -190,7 +190,7 @@ const booker = secureBooking();
 
 booker(); 
 booker();
-booker(); // how booker function updated the passengerCount from secureBooking since this function had already finished of executing?
+booker(); */ // how booker function updated the passengerCount from secureBooking since this function had already finished of executing?
 // closure makes a function remember all the variables that existed at the functions birthplace, allowing function returning functions
 // passengerCount is NOT garbage collected because it is reachable by a closure
 // a function has access to the variable environment VE of the execution context in which it was created. this linking is called closure
@@ -198,3 +198,40 @@ booker(); // how booker function updated the passengerCount from secureBooking s
 // less formal: a closure is like a backpack that a function carries around wherever it goes. this backpack has all the variables that were present in the environment where the function was created.
 
 // MORE CLOSURE EXAMPLES
+// Example 1 - Reasignment
+/* let f;
+const g = function(){
+  const a = 23;
+  f = function(){
+    console.log(a * 2);
+  }
+}
+
+const h = function(){
+  const b = 777;
+  f = function(){
+    console.log(b * 2);
+  }
+}
+ */
+//g();
+//f();
+// Re-assigning f function
+//h();
+//f();
+
+//Example 2 - Timer
+/* const boardPassengers = function(n, wait){
+  const perGroup = n/3;
+
+  setTimeout(function(){
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 03 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+
+  console.log(`We'll start boarding in ${wait} seconds`);
+}
+
+const perGroup = 1000; //the closure even has priority over the scope chain
+boardPassengers(180, 3); */
