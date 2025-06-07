@@ -82,14 +82,14 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
-const calcDisplayBalance = function(movements) {
+const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance}€`
+  labelBalance.textContent = `${balance}€`;
 };
-calcDisplayBalance(account1.movements)
+calcDisplayBalance(account1.movements);
 
-const createUsernames = function(accs) {
-  accs.forEach(function(acc){
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
     acc.username = acc.owner
       .toLowerCase()
       .split(" ")
@@ -97,11 +97,10 @@ const createUsernames = function(accs) {
         return name[0];
       })
       .join("");
-  })
+  });
 };
 
 createUsernames(accounts);
-
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -275,3 +274,13 @@ console.log(max); */
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]); */
 
 // The Magic of Chaining Methods
+/* const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const eurToUsd = 1.1;
+
+// pipeline
+const totalDepositsUSD = movements
+  .filter((mov) => mov > 0) // return an array
+  .map((mov) => mov * eurToUsd) // return an array
+  .reduce((acc, mov) => acc + mov, 0); // return a number
+
+console.log(totalDepositsUSD); */
