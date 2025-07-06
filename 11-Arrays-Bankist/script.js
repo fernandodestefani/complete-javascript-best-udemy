@@ -80,29 +80,24 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
-
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance}€`;
 };
-calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function(movements) {
-  const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0)
+const calcDisplaySummary = function(acc) {
+  const incomes = acc.movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0)
   labelSumIn.textContent = `${incomes}€`
 
-  const out = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0)
+  const out = acc.movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0)
   labelSumOut.textContent = `${Math.abs(out)}€`
 
-  const interest = movements.filter(mov => mov > 0)
-  .map(deposit => deposit * 1.2/100)
+  const interest = acc.movements.filter(mov => mov > 0)
+  .map(deposit => deposit * acc.interestRate/100)
   .filter(int => int >= 1)
   .reduce((acc, int) => acc + int, 0)
   labelSumInterest.textContent = `${interest}€`
-} 
-calcDisplaySummary(account1.movements)
-
+}
 
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -117,6 +112,38 @@ const createUsernames = function (accs) {
 };
 
 createUsernames(accounts);
+
+// Event handler
+let currentAccount;
+
+btnLogin.addEventListener('click', function(e) {
+  // Prevent form from submitting
+  e.preventDefault();
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
+  console.log(currentAccount);
+
+  if(currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`
+    containerApp.style.opacity = 1;
+    
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Display movements
+    displayMovements(currentAccount.movements)
+
+    // Display balance 
+    calcDisplayBalance(currentAccount.movements)
+
+    // Display summary
+    calcDisplaySummary(currentAccount)
+
+  }
+})
+
+
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -312,3 +339,11 @@ console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
  */
 
 // The Find Method
+/* const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const firstWithdrawal = movements.find(mov => mov < 0) */ //return the first element of an array that satisfy the condition
+// console.log(firstWithdrawal);
+
+// it is used to find an object in the array based on some propriety of that object - array of objects
+/* console.log(accounts);
+const account = accounts.find(acc => acc.owner === 'Jessica Davis')
+console.log(account); */
