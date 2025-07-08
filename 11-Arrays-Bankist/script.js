@@ -160,6 +160,22 @@ btnTransfer.addEventListener('click', function(e) {
   }
 })
 
+btnLoan.addEventListener('click', function(e){
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+
+  if(amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)){
+    // Add movement
+    currentAccount.movements.push(amount);
+    // Update UI
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = '';
+
+})
+
+
 btnClose.addEventListener('click', function(e) {
   e.preventDefault();
 
@@ -377,4 +393,20 @@ const firstWithdrawal = movements.find(mov => mov < 0) */ //return the first ele
 const account = accounts.find(acc => acc.owner === 'Jessica Davis')
 console.log(account); */
 
-// The findIndex Method
+// some and every methods
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// EQUALITY
+console.log(movements.includes(-130)); //only tests for equality
+
+// SOME: CONDITION for testing conditions, we can use some
+console.log(movements.some(mov => mov === -130));
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
+
+// EVERY: similar but only returns true if all of the elements in the array satisfy the condition that we pass in
+console.log(movements.every(mov => mov > 0)); 
+
+// Separate callback:
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
