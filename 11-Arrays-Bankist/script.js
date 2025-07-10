@@ -61,10 +61,12 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = ""; // innerHTML is similar to textContent, but innerHTML also includes the HTML tags besides the text itself
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
     const html = `
@@ -188,6 +190,13 @@ btnClose.addEventListener('click', function(e) {
   }
 
   inputCloseUsername.value = inputClosePin.value = "";
+})
+
+let sorted = false;
+btnSort.addEventListener('click', function(e){
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted)
+  sorted = !sorted
 })
 
 /////////////////////////////////////////////////
@@ -396,7 +405,7 @@ console.log(account); */
 // some and every methods
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// EQUALITY
+/* // EQUALITY
 console.log(movements.includes(-130)); //only tests for equality
 
 // SOME: CONDITION for testing conditions, we can use some
@@ -409,4 +418,33 @@ console.log(movements.every(mov => mov > 0));
 
 // Separate callback:
 const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
+console.log(movements.some(deposit)); */
+
+// ---- Sorting Arrays ----
+// Strings - does the sorting based on strings
+/* const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort()); // it mutates the original array
+
+// Numbers
+// console.log(movements.sort()); - does not work
+
+// 3, 1 eg.
+// return < 0, A, B (keep order)
+// return > 0, B, A (switch order)
+// Ascending order
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (b > a) return -1;
+})
+// Simplifying:
+movements.sort((a, b) => a - b)
+
+// Descending order
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (b > a) return 1;
+})
+movements.sort((a, b) => b - a); */
+
+// Best Tip Ever: a - b → menor primeiro (crescente) / b - a → maior primeiro (decrescente)
+
