@@ -448,3 +448,30 @@ movements.sort((a, b) => b - a); */
 
 // Best Tip Ever: a - b → menor primeiro (crescente) / b - a → maior primeiro (decrescente)
 
+// ---- More Ways of Creating and Filling Arrays ----
+/* const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+const x = new Array(7); // it generates an empty array with length of 7
+// there is only one method that we can call on this empty array
+// x.fill(1); // it mutates the array
+x.fill(1, 3, 5);
+console.log(x);
+// we can use to fill not only empty arrays
+arr.fill(23, 4, 6)
+console.log(arr);
+
+// Array.from
+const y = Array.from({length: 7}, () => 1)
+console.log(y);
+
+const z = Array.from({length: 7}, (_, i) => i + 1);
+console.log(z);
+
+// We can create arrays FROM other things - iterables like strings, sets, maps and node lists - array-like structures
+
+labelBalance.addEventListener('click', function(){
+  const movementsUI = Array.from(document.querySelectorAll('.movements__value'), el => Number(el.textContent.replace('€', '')));
+  console.log(movementsUI.map());
+
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+}) */
