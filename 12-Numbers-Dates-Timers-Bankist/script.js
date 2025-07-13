@@ -350,3 +350,31 @@ const transferFee2 = 1_500;
 const PI = 3.1415;
 
 console.log(Number('230_000')); // does NOT work. So we should only numeric separators for numbers and not for strings */
+
+// ---- Working with BigInt
+// the biggest number that JS can easily represent
+/* console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+// Creating BigInts
+console.log(42348235435347563785674653748563456783n);
+console.log(BigInt(423482354353475));
+
+// Operations
+console.log(10000n + 100000n);
+//its not possible to mix bigints with simple numbers
+//math operations are also gonna work
+const huge = 123328472389742398472839472398n
+const num = 23;
+console.log(huge + BigInt(num));
+
+// Exception ===
+console.log(20n === 20); // false because === means that js does NOT make type coercion
+console.log(20n == 20);
+
+// Exception concatenation
+console.log(huge + " is REALLY big!!!"); // you have to transform huge into strings first
+
+// Divisions
+//bigints não aceita decimais
+console.log(11n/ 3n); */
