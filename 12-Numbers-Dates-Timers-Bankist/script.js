@@ -277,8 +277,8 @@ console.log(Number.isInteger(20));
 console.log(Number.isInteger(20.0));
 console.log(Number.isInteger(20.25)); */
 
-// ---- Math and Rouding 
-console.log(Math.sqrt(25));
+// ---- Math and Rounding 
+/* console.log(Math.sqrt(25));
 console.log(25 ** (1/2));
 console.log(8 ** (1/3));
 
@@ -295,7 +295,7 @@ console.log(Math.PI * Number.parseFloat('10px') ** 2);
 console.log(Math.trunc(Math.random() * 6) + 1);
 
 // Creating a function that generates random numbers easily
-const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min; */
 
 //console.log(randomInt(10, 20));
 //console.log(randomInt(0, 3));
@@ -316,6 +316,24 @@ console.log(Math.trunc(-23.3));
 console.log(Math.floor(-23.3)); */
 
 // Rounding decimals
-console.log((2.7).toFixed(0)); // returns a String
+/* console.log((2.7).toFixed(0)); // returns a String
 console.log((2.7).toFixed(3));
 console.log(+(2.345).toFixed(2));
+ */
+
+// The Remainder Operator %
+/* const isEven = n => n % 2 === 0;
+console.log(isEven(8))
+console.log(isEven(23))
+console.log(isEven(514))
+
+//every nth time => use remainder operator %
+
+labelBalance.addEventListener('click', function(){
+  [...document.querySelectorAll('.movements__row')].forEach(function(row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+    if (i % 3 === 0) row.style.backgroundColor = 'blue';
+  });
+}) */
+
+// ---- Numeric Separator
