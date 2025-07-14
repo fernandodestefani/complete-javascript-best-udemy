@@ -378,3 +378,33 @@ console.log(huge + " is REALLY big!!!"); // you have to transform huge into stri
 // Divisions
 //bigints não aceita decimais
 console.log(11n/ 3n); */
+
+// ---- Creating Dates
+/* const now = new Date();
+console.log(now);
+
+console.log(new Date('May 19, 1993'));
+console.log(new Date(account1.movementsDates));
+
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // month is 0 base
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // 259200000 time stamp of the day number 3
+ */
+
+// Working with dates
+const future = new Date(2037, 10, 19, 15, 23); 
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth()); // 0 base
+console.log(future.getDate()); // day of month
+console.log(future.getDay()); // day of week 0 base where 0 is Sunday
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime()); // time stamp
+console.log(new Date(2142267780000));
+console.log(Date.now());
+
+future.setFullYear(2024);
+console.log(future);
