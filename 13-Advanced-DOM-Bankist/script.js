@@ -36,7 +36,7 @@ document.addEventListener('keydown', function (e) {
 
 // Selecting Elements
 // for only these three, we cannot need to select elements
-console.log(document.documentElement);
+/* console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
 
@@ -60,13 +60,13 @@ message.innerHTML = 'We use cookies for improved functionality and analytics. <b
 // each dom element is really unique 
 // header.prepend(message); // add the element as the first child
 header.append(message) // the last child
-// header.append(message.cloneNode(true))
+ */// header.append(message.cloneNode(true))
 
 /* header.before(message) // as siblings
 header.after(message) */ 
 
 // Delete elements
-document.querySelector('.btn--close-cookie').addEventListener('click', function(){
+/* document.querySelector('.btn--close-cookie').addEventListener('click', function(){
   message.remove();
 })
 
@@ -113,5 +113,29 @@ logo.classList.add('c');
 logo.classList.remove('c');
 logo.classList.toggle('c');
 logo.classList.contains('c');
-
+ */
 //Don't use logo.className = 'Fernando' because this will overall all the existing classes
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function(e){
+  const s1coords = section1.getBoundingClientRect();
+  /* console.log(s1coords);
+  console.log(e.target.getBoundingClientRect()); */
+
+  /* console.log(`Current scroll (X/Y): ${window.scrollX} ${window.scrollY}`);
+  console.log(`height/width viewport: ${document.documentElement.clientHeight} ${document.documentElement.clientWidth}`); */
+
+  // Scrooling
+  // window.scrollTo(s1coords.left + window.scrollX, s1coords.top + window.scrollY);
+
+  // Old School
+/*   window.scrollTo({
+    left: s1coords.left + window.scrollX, 
+    top: s1coords.top + window.scrollY,
+    behavior: 'smooth'
+  })
+*/
+  section1.scrollIntoView({behavior: 'smooth'})
+})
