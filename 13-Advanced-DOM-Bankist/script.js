@@ -1,31 +1,31 @@
-'use strict';
+"use strict";
 
 ///////////////////////////////////////
 // Modal window
 
-const modal = document.querySelector('.modal');
-const overlay = document.querySelector('.overlay');
-const btnCloseModal = document.querySelector('.btn--close-modal');
-const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const btnCloseModal = document.querySelector(".btn--close-modal");
+const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 
 const openModal = function (e) {
   e.preventDefault();
-  modal.classList.remove('hidden');
-  overlay.classList.remove('hidden');
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
 };
 
 const closeModal = function () {
-  modal.classList.add('hidden');
-  overlay.classList.add('hidden');
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
 };
 
-btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal))
+btnsOpenModal.forEach((btn) => btn.addEventListener("click", openModal));
 
-btnCloseModal.addEventListener('click', closeModal);
-overlay.addEventListener('click', closeModal);
+btnCloseModal.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
 
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
     closeModal();
   }
 });
@@ -60,10 +60,10 @@ message.innerHTML = 'We use cookies for improved functionality and analytics. <b
 // each dom element is really unique 
 // header.prepend(message); // add the element as the first child
 header.append(message) // the last child
- */// header.append(message.cloneNode(true))
+ */ // header.append(message.cloneNode(true))
 
 /* header.before(message) // as siblings
-header.after(message) */ 
+header.after(message) */
 
 // Delete elements
 /* document.querySelector('.btn--close-cookie').addEventListener('click', function(){
@@ -116,10 +116,10 @@ logo.classList.contains('c');
  */
 //Don't use logo.className = 'Fernando' because this will overall all the existing classes
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
 
-btnScrollTo.addEventListener('click', function(e){
+btnScrollTo.addEventListener("click", function (e) {
   const s1coords = section1.getBoundingClientRect();
   /* console.log(s1coords);
   console.log(e.target.getBoundingClientRect()); */
@@ -131,23 +131,23 @@ btnScrollTo.addEventListener('click', function(e){
   // window.scrollTo(s1coords.left + window.scrollX, s1coords.top + window.scrollY);
 
   // Old School
-/*   window.scrollTo({
+  /*   window.scrollTo({
     left: s1coords.left + window.scrollX, 
     top: s1coords.top + window.scrollY,
     behavior: 'smooth'
   })
 */
-  section1.scrollIntoView({behavior: 'smooth'})
-})
+  section1.scrollIntoView({ behavior: "smooth" });
+});
 
-const h1 = document.querySelector('h1');
+const h1 = document.querySelector("h1");
 
-const alertH1 = function(e){
-  alert('addEventListener: Great! You are reading the heading :D')
-  h1.removeEventListener('mouseenter', alertH1)
-}
+const alertH1 = function (e) {
+  alert("addEventListener: Great! You are reading the heading :D");
+  h1.removeEventListener("mouseenter", alertH1);
+};
 
-h1.addEventListener('mouseenter', alertH1);
+h1.addEventListener("mouseenter", alertH1);
 
 //setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 
@@ -155,3 +155,37 @@ h1.addEventListener('mouseenter', alertH1);
 /* h1.onmouseenter = function(e){
   alert('onmouseenter: Great! You are reading the heading :D')
 } */
+
+// rgb(255, 255, 255)
+/* const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+console.log(randomColor());
+
+document.querySelector(".nav__link").addEventListener("click", function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log("LINK", e.target, e.currentTarget);
+  console.log(e.currentTarget === this);
+
+  // Stop propagation
+  // e.stopPropagation();
+});
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log("CONTAINER", e.target, e.currentTarget);
+  console.log(e.currentTarget === this);
+});
+
+document.querySelector(".nav").addEventListener(
+  "click",
+  function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log("NAV", e.target, e.currentTarget);
+    console.log(e.currentTarget === this);
+  },
+  // true
+);
+ */
+
