@@ -4,7 +4,7 @@
 // Constructor function and new operator
 // capital letter for constructor functions; array function doesnt work as constructor functions because it doesnt have the this keyword
 
-const Person = function(firstName, birthYear){
+/* const Person = function(firstName, birthYear){
   // Instance properties
   this.firstName = firstName;
   this.birthYear = birthYear;
@@ -91,4 +91,44 @@ Car.prototype.brake = function() {
 const car1 = new Car('BMW', 120);
 const car2 = new Car('Mercedes', 95);
 
-car1.accelerate()
+car1.accelerate() */
+
+///////////////////////////////////
+// ES6 Classes
+
+// classes are still functions
+// class expression
+// const PersonCl = class {}
+
+// class declaration 
+class PersonCl {
+  constructor(firstName, birthYear){
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+  //we can simply writhe the methods here outside the constructor for performance reasons - it will be added to .prototype property
+  callAge() {
+    console.log(2025 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey, I'm ${this.firstName}`)  
+  }
+
+}
+
+const jessica = new PersonCl('Jessica', 1995);
+console.log(jessica);
+jessica.callAge()
+
+console.log(jessica.__proto__ === PersonCl.prototype);
+
+/* PersonCl.prototype.greet = function() {
+  console.log(`Hey, I'm ${this.firstName}`);
+} */
+
+jessica.greet()
+
+// 1. Classes are NOT hoisted, which means we can NOT use them before declaration!
+// 2. Class are first-class citizens, because we can passe them into and return them from functions
+// 3. Classes are executed in strict mode
