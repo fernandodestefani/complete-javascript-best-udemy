@@ -45,6 +45,9 @@ console.log(fernando.species);
 console.log(fernando.hasOwnProperty('firstName'));
 console.log(fernando.hasOwnProperty('species'));
 
+///////////////////////////////////
+// Prototype Inheritance
+
 console.log(fernando.__proto__); // fernando's prototype === Person.prototype
 console.log(fernando.__proto__.__proto__); // object prototype (top of prototype chain)
 console.log(fernando.__proto__.__proto__.__proto__); // null
@@ -69,3 +72,23 @@ console.log(arr.unique());
 const h1 = document.querySelector('h1'); // h1 > html heading element > html element > element > node > event target > object > null
 
 //functions itself are objects!
+
+///////////////////////////////////
+// Coding Challenge #1
+const Car = function(make, speed) {
+  this.make = make;
+  this.speed = speed;
+}
+
+Car.prototype.accelerate = function() {
+  console.log(`${this.speed + 10}km/h`);
+}
+
+Car.prototype.brake = function() {
+  console.log(`${this.speed - 5}km/h`);
+}
+
+const car1 = new Car('BMW', 120);
+const car2 = new Car('Mercedes', 95);
+
+car1.accelerate()
