@@ -44,3 +44,28 @@ console.log(fernando.species);
 
 console.log(fernando.hasOwnProperty('firstName'));
 console.log(fernando.hasOwnProperty('species'));
+
+console.log(fernando.__proto__); // fernando's prototype === Person.prototype
+console.log(fernando.__proto__.__proto__); // object prototype (top of prototype chain)
+console.log(fernando.__proto__.__proto__.__proto__); // null
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 6, 4, 5, 6, 9, 3]; // new Array === []
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__); // object prototype
+
+// we can use this knowledge to create methods that are available for all arrays:
+// remember that in practice you should NOT do it!
+Array.prototype.unique = function(){
+  return [...new Set(this)]
+}
+
+console.log(arr.unique());
+
+// all the DOM elements are behind the scene objects
+const h1 = document.querySelector('h1'); // h1 > html heading element > html element > element > node > event target > object > null
+
+//functions itself are objects!
