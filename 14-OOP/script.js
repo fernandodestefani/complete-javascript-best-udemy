@@ -102,8 +102,8 @@ car1.accelerate() */
 
 // class declaration 
 class PersonCl {
-  constructor(firstName, birthYear){
-    this.firstName = firstName;
+  constructor(fullName, birthYear){
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
   //we can simply writhe the methods here outside the constructor for performance reasons - it will be added to .prototype property
@@ -112,15 +112,28 @@ class PersonCl {
   }
 
   greet() {
-    console.log(`Hey, I'm ${this.firstName}`)  
+    console.log(`Hey, I'm ${this.fullName}`)  
   }
 
+  get age() {
+    return 2025 - this.birthYear;
+  }
+
+  // Set a property that already exists => _property and use get in sequence
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`)
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
 }
 
-const jessica = new PersonCl('Jessica', 1995);
+const jessica = new PersonCl('Jessica Davis', 1995);
 console.log(jessica);
 jessica.callAge()
-
+console.log(jessica.age);
 console.log(jessica.__proto__ === PersonCl.prototype);
 
 /* PersonCl.prototype.greet = function() {
@@ -132,3 +145,25 @@ jessica.greet()
 // 1. Classes are NOT hoisted, which means we can NOT use them before declaration!
 // 2. Class are first-class citizens, because we can passe them into and return them from functions
 // 3. Classes are executed in strict mode
+
+///////////////////////////////////
+// Getters and Setters
+
+const walter = new PersonCl('Walter White', 1965)
+
+const account = {
+  owner: 'Fernando',
+  movements: [200, 530, 120, 300],
+
+  get latest(){
+    return this.movements.slice(-1).pop() 
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  }
+}
+// we just call latest as a property
+console.log(account.latest);
+account.latest = 50;
+console.log(account.movements);
