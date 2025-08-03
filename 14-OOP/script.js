@@ -214,3 +214,33 @@ console.log(steven.__proto__ === PersonProto);
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979)
 sarah.calcAge()
+
+///////////////////////////////////
+// Coding challenge #2
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+  
+  accelerate() {
+    console.log(`${this.speed + 10}km/h`);
+  }
+  
+  brake() {
+    console.log(`${this.speed - 5}km/h`);
+  }
+  
+  get speedUS(){
+    console.log(`${this.speed / 1.6}mi/h`);
+  }
+
+  set speedUS(speed){
+    this.speed = speed * 1.6
+  }
+}
+
+const car1 = new CarCl('Ford', 120);
+car1.speedUS;
+car1.speedUS = 110;
+console.log(car1.speed)
