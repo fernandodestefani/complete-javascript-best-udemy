@@ -106,7 +106,9 @@ class PersonCl {
     this.fullName = fullName;
     this.birthYear = birthYear;
   }
-  //we can simply writhe the methods here outside the constructor for performance reasons - it will be added to .prototype property
+
+  // Instance methods
+  // We can simply writhe the methods here outside the constructor for performance reasons - it will be added to .prototype property
   callAge() {
     console.log(2025 - this.birthYear);
   }
@@ -128,6 +130,13 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  // Static method
+  static hey() {
+    console.log('Hey there 👋🏼');
+    console.log(this);
+  }
+
 }
 
 const jessica = new PersonCl('Jessica Davis', 1995);
@@ -167,3 +176,18 @@ const account = {
 console.log(account.latest);
 account.latest = 50;
 console.log(account.movements);
+
+///////////////////////////////////
+// Static Methods
+
+// Array.from() - this method is attached to array constructor and not the prototype. Therefore the arrays do NOT inherit this method
+
+// Creating a static method on our won 
+/* Person.hey = function() {
+  console.log('Hey there 👋🏼');
+}
+Person.hey() this is NOT inherited */
+PersonCl.hey()
+
+///////////////////////////////////
+// Object.create
