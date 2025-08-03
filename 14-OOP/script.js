@@ -101,7 +101,7 @@ car1.accelerate() */
 // const PersonCl = class {}
 
 // class declaration 
-class PersonCl {
+/* class PersonCl {
   constructor(fullName, birthYear){
     this.fullName = fullName;
     this.birthYear = birthYear;
@@ -143,13 +143,13 @@ const jessica = new PersonCl('Jessica Davis', 1995);
 console.log(jessica);
 jessica.callAge()
 console.log(jessica.age);
-console.log(jessica.__proto__ === PersonCl.prototype);
+console.log(jessica.__proto__ === PersonCl.prototype); */
 
 /* PersonCl.prototype.greet = function() {
   console.log(`Hey, I'm ${this.firstName}`);
 } */
 
-jessica.greet()
+// jessica.greet()
 
 // 1. Classes are NOT hoisted, which means we can NOT use them before declaration!
 // 2. Class are first-class citizens, because we can passe them into and return them from functions
@@ -158,7 +158,7 @@ jessica.greet()
 ///////////////////////////////////
 // Getters and Setters
 
-const walter = new PersonCl('Walter White', 1965)
+/* const walter = new PersonCl('Walter White', 1965)
 
 const account = {
   owner: 'Fernando',
@@ -176,7 +176,7 @@ const account = {
 console.log(account.latest);
 account.latest = 50;
 console.log(account.movements);
-
+ */
 ///////////////////////////////////
 // Static Methods
 
@@ -187,12 +187,12 @@ console.log(account.movements);
   console.log('Hey there 👋🏼');
 }
 Person.hey() this is NOT inherited */
-PersonCl.hey()
+// PersonCl.hey()
 
 ///////////////////////////////////
 // Object.create - a third way of implementing prototype inheritance
 // In practice, it is mainly used for true classes inheritance
-const PersonProto = {
+/* const PersonProto = {
   calcAge() {
     console.log(2025 - this.birthYear);
   },
@@ -213,11 +213,11 @@ console.log(steven.__proto__ === PersonProto);
 
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979)
-sarah.calcAge()
+sarah.calcAge() */
 
 ///////////////////////////////////
 // Coding challenge #2
-class CarCl {
+/* class CarCl {
   constructor(make, speed) {
     this.make = make;
     this.speed = speed;
@@ -243,4 +243,41 @@ class CarCl {
 const car1 = new CarCl('Ford', 120);
 car1.speedUS;
 car1.speedUS = 110;
-console.log(car1.speed)
+console.log(car1.speed) */
+
+///////////////////////////////////
+// Inheritance between classes: constructor functions
+const Person = function(firstName, birthYear){
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+}
+
+Person.prototype.calcAge = function(){
+  console.log(2025 - this.birthYear);
+}
+
+const Student = function(firstName, birthYear, course){
+  Person.call(this, firstName, birthYear)
+  this.course = course;
+}
+
+// Linking prototypes
+// it's important to put this sentence here before defining methods into student.prototype, otherwise Object.create() will overwrite it
+Student.prototype = Object.create(Person.prototype)
+// Person prototype is the prototype of student prototype
+
+Student.prototype.constructor = Student;
+
+Student.prototype.introduce = function(){
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+}
+
+const mike = new Student("Mike", 2020, 'Computer Science');
+mike.introduce()
+mike.calcAge()
+
+console.log(mike instanceof Student);// true
+console.log(mike instanceof Person);// true
+
+///////////////////////////////////
+// Coding challenge #3
