@@ -247,7 +247,7 @@ console.log(car1.speed) */
 
 ///////////////////////////////////
 // Inheritance between classes: constructor functions
-const Person = function(firstName, birthYear){
+/* const Person = function(firstName, birthYear){
   this.firstName = firstName;
   this.birthYear = birthYear;
 }
@@ -277,11 +277,11 @@ mike.introduce()
 mike.calcAge()
 
 console.log(mike instanceof Student);// true
-console.log(mike instanceof Person);// true
+console.log(mike instanceof Person);// true */
 
 ///////////////////////////////////
 // Coding challenge #3
-const Car = function(make, speed) {
+/* const Car = function(make, speed) {
   this.make = make;
   this.speed = speed;
 }
@@ -317,4 +317,65 @@ console.log(car1);
 car1.accelerate();
 console.log(car1);
 car1.chargeBattery(90);
-console.log(car1);
+console.log(car1); */
+
+///////////////////////////////////
+// Inheritance between ES6 Classes
+class PersonCl {
+  constructor(fullName, birthYear){
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  callAge() {
+    console.log(2025 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey, I'm ${this.fullName}`)  
+  }
+
+  get age() {
+    return 2025 - this.birthYear;
+  }
+
+  // Set a property that already exists => _property and use get in sequence
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`)
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  // Static method
+  static hey() {
+    console.log('Hey there 👋🏼');
+    console.log(this);
+  }
+}
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // Always needs to happen first because super defines what the this keyword refers to!
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}.`);
+  }
+
+  //polimorphism 
+  calcAge() {
+    console.log(`I'm ${2025 - this.birthYear} years old, but as a student I feel more like ${2025 - this.birthYear + 10}`);
+  }
+}
+
+const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+martha.introduce();
+martha.calcAge();
+
+///////////////////////////////////
+// Inheritance between 'Classes': Object.create()
