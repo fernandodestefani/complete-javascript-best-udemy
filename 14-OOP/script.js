@@ -408,7 +408,7 @@ jay.calcAge(); */
 
 ///////////////////////////////////
 // Another Class example
-class Account {
+/* class Account {
   constructor(owner, currency, pin){
     this.owner = owner;
     this.currency = currency;
@@ -444,4 +444,60 @@ class Account {
 const acc1 = new Account('Fernando', 'CAD', 1111);
 acc1.deposit(250);
 acc1.withdraw(140);
-console.log(acc1);
+console.log(acc1); */
+
+///////////////////////////////////
+// Encapsulation: Private Class Fields and Methods
+
+// 1) Public fields
+// 2) Private fields - cannot be accessed from the outside
+// 3) Public methods
+// 4) Private methods
+// STATIC version of these 4 - they are only accessible on the class (Account in the case), not the instances (acc1, e.g.)
+
+class Account {
+  // Public fields
+  locale = navigator.language;
+  bank = 'Bankist';
+  // Private field
+  #movements = [];
+  #pin; //only declare here because it depends on the input
+
+  constructor(owner, currency, pin){
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+    // this.movements = [];
+    // this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}`);
+  }
+
+  // Public Interface (API)
+  getMovements() {
+    return this.#movements;
+  }
+
+  deposit(val) {
+    this.#movements.push(val)
+  }
+
+  withdraw(val) {
+    this.deposit(-val)
+  }
+
+  // Private method
+  #approveLoan(val) {
+    return true;
+  }
+
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`);
+    }
+  }
+
+}
+
+const acc1 = new Account('Fernando', 'CAD', 1111);
