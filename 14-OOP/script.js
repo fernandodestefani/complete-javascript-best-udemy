@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 ///////////////////////////////////
 // Constructor function and new operator
@@ -100,7 +100,7 @@ car1.accelerate() */
 // class expression
 // const PersonCl = class {}
 
-// class declaration 
+// class declaration
 /* class PersonCl {
   constructor(fullName, birthYear){
     this.fullName = fullName;
@@ -182,7 +182,7 @@ console.log(account.movements);
 
 // Array.from() - this method is attached to array constructor and not the prototype. Therefore the arrays do NOT inherit this method
 
-// Creating a static method on our won 
+// Creating a static method on our won
 /* Person.hey = function() {
   console.log('Hey there 👋🏼');
 }
@@ -455,7 +455,7 @@ console.log(acc1); */
 // 4) Private methods
 // STATIC version of these 4 - remember they are only accessible on the class (Account in the case), not the instances (acc1, e.g.)
 
-class Account {
+/* class Account {
   // Public fields
   locale = navigator.language;
   bank = 'Bankist';
@@ -504,10 +504,67 @@ class Account {
 
 }
 
-const acc1 = new Account('Fernando', 'CAD', 1111);
+const acc1 = new Account('Fernando', 'CAD', 1111); */
 
 ///////////////////////////////////
 // Chaining methods
-const movements = acc1.deposit(300).withdraw(100).withdraw(50).requestLoan(25000).withdraw(4000).getMovements();
+/* const movements = acc1.deposit(300).withdraw(100).withdraw(50).requestLoan(25000).withdraw(4000).getMovements();
 
-console.log(acc1, movements);
+console.log(acc1, movements); */
+
+///////////////////////////////////
+// Coding challenge #4
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    console.log(`${this.speed + 10}km/h`);
+    return this;
+  }
+
+  brake() {
+    console.log(`${this.speed - 5}km/h`);
+    return this;
+  }
+
+  get speedUS() {
+    console.log(`${this.speed / 1.6}mi/h`);
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+    return this;
+  }
+}
+
+class EVCl extends CarCl {
+  #charge;
+
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTO) {
+    this.#charge = chargeTO;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+}
+
+const EVcar1 = new EVCl('Rivian', 120, 23);
+EVcar1.accelerate().brake().chargeBattery(100);
+console.log(EVcar1);
