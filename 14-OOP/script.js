@@ -453,7 +453,7 @@ console.log(acc1); */
 // 2) Private fields - cannot be accessed from the outside
 // 3) Public methods
 // 4) Private methods
-// STATIC version of these 4 - they are only accessible on the class (Account in the case), not the instances (acc1, e.g.)
+// STATIC version of these 4 - remember they are only accessible on the class (Account in the case), not the instances (acc1, e.g.)
 
 class Account {
   // Public fields
@@ -476,14 +476,17 @@ class Account {
   // Public Interface (API)
   getMovements() {
     return this.#movements;
+    // Not chainable
   }
 
   deposit(val) {
     this.#movements.push(val)
+    return this
   }
 
   withdraw(val) {
     this.deposit(-val)
+    return this;
   }
 
   // Private method
@@ -496,8 +499,15 @@ class Account {
       this.deposit(val);
       console.log(`Loan approved`);
     }
+    return this;
   }
 
 }
 
 const acc1 = new Account('Fernando', 'CAD', 1111);
+
+///////////////////////////////////
+// Chaining methods
+const movements = acc1.deposit(300).withdraw(100).withdraw(50).requestLoan(25000).withdraw(4000).getMovements();
+
+console.log(acc1, movements);
