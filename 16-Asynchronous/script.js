@@ -66,7 +66,7 @@ const renderCountry = function(data, className = "") {
     countriesContainer.style.opacity = 1;
 }
 
-const getCountryAndNeighbour = function (country) {
+/* const getCountryAndNeighbour = function (country) {
   // AJAX call country 1
   const request = new XMLHttpRequest();
   request.open("GET", `https://restcountries.com/v2/name/${country}`);
@@ -93,6 +93,11 @@ const getCountryAndNeighbour = function (country) {
     })
   });
 };
-// callback hell: nested callbacks in order to execute asynchronous tasks in sequence
+ */// callback hell: nested callbacks in order to execute asynchronous tasks in sequence
 // callback hell makes our code messy and hard to mantain and very difficult to understand and reason about it
-getCountryAndNeighbour('portugal')
+// getCountryAndNeighbour('portugal')
+
+///////////////////////////////////////
+// Promises and the fetch API
+const request = fetch(`https://restcountries.com/v2/name/portugal`);
+console.log(request); // promise: a container (object) for an asynchronous (future) delivered value - eg response from AJAX call
