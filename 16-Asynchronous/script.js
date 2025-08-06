@@ -99,5 +99,20 @@ const renderCountry = function(data, className = "") {
 
 ///////////////////////////////////////
 // Promises and the fetch API
-const request = fetch(`https://restcountries.com/v2/name/portugal`);
-console.log(request); // promise: a container (object) for an asynchronous (future) delivered value - eg response from AJAX call
+// const request = fetch(`https://restcountries.com/v2/name/portugal`);
+// console.log(request); // promise: a container (object) for an asynchronous (future) delivered value - eg response from AJAX call
+
+// Consuming promises
+/* const getCountryData = function(country) {
+  fetch(`https://restcountries.com/v2/name/${country}`).then(function(response){
+    return response.json() //json() also returns a promise
+  }).then(function(data){
+    renderCountry(data[0])
+  })
+} */
+const getCountryData = function(country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+  .then(response => response.json())
+  .then(data => renderCountry(data[0]))
+}
+getCountryData('greenland')
