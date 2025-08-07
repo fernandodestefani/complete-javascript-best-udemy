@@ -111,41 +111,80 @@ const renderCountry = function (data, className = "") {
   })
 } */
 
-const renderError = function(msg) {
-  countriesContainer.insertAdjacentText('beforeend', msg)
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText("beforeend", msg);
   // countriesContainer.style.opacity = 1;
-}
+};
 
-const getCountryData = function (country) {
+const getJSON = function (url, errorMsg = "Something went wrong") {
+  return fetch(url).then((response) => {
+    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`); //promise rejected!
+    return response.json();
+  });
+};
+
+/* const getCountryData = function (country) {
   // Country 1
   fetch(`https://restcountries.com/v2/name/${country}`, { cache: "no-store" })
-    .then(
-      (response) => response.json()
-    )
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`Country not found (${response.status})`); //promise rejected!
+      return response.json();
+    })
     .then((data) => {
       renderCountry(data[0]);
       const neighbour = data[0].borders?.[0];
       // Country 2 - always return the function and continue the chain outside to avoid callback hell
       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
     })
-    .then(
-      (response) => response.json()
-    )
+    .then((response) => response.json())
     .then((data) => renderCountry(data, "neighbour"))
-    .catch(err => {
+    .catch((err) => {
       console.error(`${err} 💣💣💣`);
-      renderError(`Something went wrong 💣💣 ${err.message}. Try again!`)
+      renderError(`Something went wrong 💣💣 ${err.message}. Try again!`);
     })
     .finally(() => {
       countriesContainer.style.opacity = 1;
-    }) // it will be called ALWAYS, no matters the promise be fullfilled or rejected, eg hidding a spine
+    }); // it will be called ALWAYS, no matters the promise be fullfilled or rejected, eg hidding a spine
 };
+ */
 
 ///////////////////////////////////////
 // Handling rejected promises
-btn.addEventListener("click", function () {
+/* btn.addEventListener("click", function () {
   getCountryData("portugal");
-});
+}); */
 // two ways of handling:
 // 1 - pass a second callback function in the then method (the first one will be called always that a promise is fullfilled) (fullfilled(), rejected())
-// 2 - handle all erros by adding catch method at the end of the chain 
+// 2 - handle all erros by adding catch method at the end of the chain
+
+///////////////////////////////////////
+// Throwing errors manually
+// fetch doesnt reject some cases, so we have to do it manually
+
+const getCountryData = function (country) {
+  // Country 1
+  getJSON(`https://restcountries.com/v2/name/${country}`, "Country not found")
+    .then((data) => {
+      renderCountry(data[0]);
+      const neighbour = data[0].borders?.[0];
+      if (!neighbour) throw new Error('No neighbour found')
+      // Country 2
+      return getJSON(`https://restcountries.com/v2/alpha/${neighbour}`, 'Country not found')
+    })
+    .then((data) => renderCountry(data, "neighbour"))
+    .catch((err) => {
+      console.error(`${err} 💣💣💣`);
+      renderError(`Something went wrong 💣💣 ${err.message}. Try again!`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    }); // it will be called ALWAYS, no matters the promise be fullfilled or rejected, eg hidding a spine
+};
+
+btn.addEventListener("click", function () {
+  getCountryData("australia");
+});
+
+///////////////////////////////////////
+// Code challenge #1
