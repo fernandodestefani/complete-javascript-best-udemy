@@ -182,9 +182,27 @@ const getCountryData = function (country) {
     }); // it will be called ALWAYS, no matters the promise be fullfilled or rejected, eg hidding a spine
 };
 
-btn.addEventListener("click", function () {
+/* btn.addEventListener("click", function () {
   getCountryData("australia");
 });
+ */
 
 ///////////////////////////////////////
 // Code challenge #1
+// API url: http://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}$longitude=${}
+
+const whereamI = function(lat, long, errorMsg='Something went wrong'){
+  fetch(`http://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}`, {cache: "no-store"})
+  .then(response => {
+    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`)
+    return response.json()
+  })
+  .then(data => {
+    console.log(data)
+    console.log(`You are in ${data.locality}, ${data.countryName}`);
+    getCountryData(`${data.countryName.toLowerCase()}`)
+  })
+  .catch(err => console.error(` 🧨🧨 ${err.message}. Try again`))  
+}
+
+whereamI(-33.933, 18.474);
