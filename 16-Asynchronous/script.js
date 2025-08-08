@@ -185,9 +185,9 @@ const getCountryData = function (country) {
     }); // it will be called ALWAYS, no matters the promise be fullfilled or rejected, eg hidding a spine
 };
 
-btn.addEventListener("click", function () {
+/* btn.addEventListener("click", function () {
   getCountryData("portugal");
-});
+}); */
 
 ///////////////////////////////////////
 // Code challenge #1
@@ -235,7 +235,7 @@ console.log('Test end'); */ // call stack (because its not a callback function)
 
 ///////////////////////////////////////
 // Building a simple promise
-const lotteryPromise = new Promise(function (resolve, reject) {
+/* const lotteryPromise = new Promise(function (resolve, reject) {
   //executor
   console.log("Lotter draw is happening... 🔮");
   setTimeout(function () {
@@ -249,11 +249,11 @@ const lotteryPromise = new Promise(function (resolve, reject) {
 
 lotteryPromise
   .then((res) => console.log(res))
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err)); */
 
 // promisifying means to convert callback based asynchronous behavior to promise based
 // Promisifying setTimeout
-const wait = function (seconds) {
+/* const wait = function (seconds) {
   return new Promise(function (resolve) {
     setTimeout(resolve, seconds * 1000);
   });
@@ -264,8 +264,54 @@ wait(2)
   console.log(`I waited for 2 seconds`);
   return wait(1);
 })
-.then(() => console.log('I waited for 1 second'))
+.then(() => console.log('I waited for 1 second')) */
 
 // creating a fullfilled ou rejected promise immediately - static method
-Promise.resolve('I did NOT have to wait').then(res => console.log(res))
-Promise.reject(new Error('Problem!')).catch(res => console.error(res))
+//Promise.resolve('I did NOT have to wait').then(res => console.log(res))
+//Promise.reject(new Error('Problem!')).catch(res => console.error(res))
+
+///////////////////////////////////////
+// Coding challenge #2
+// Part 1
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const newImg = document.createElement("img");
+    newImg.src = imgPath;
+    // resolve
+    newImg.addEventListener("load", function () {
+      document.querySelector(".images").append(newImg);
+      resolve(newImg)
+    });
+    // reject
+    newImg.addEventListener('error', function(){
+      reject(new Error("Error loading the image 🧨"));
+    })
+  });
+};
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+// Part 2
+let currentImg;
+
+createImage("img/img-1.jpg")
+.then(img => {
+  currentImg = img;
+  return wait(2);
+})
+.then(() => {
+  currentImg.style.display = 'none';
+  return createImage("img/img-2.jpg");
+})
+.then((img) => {
+  currentImg = img;
+  return wait(2)
+})
+.then(() => {
+  currentImg.style.display = 'none'
+})
+.catch(err => console.error(err.message));
