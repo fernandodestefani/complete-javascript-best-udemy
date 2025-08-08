@@ -168,9 +168,12 @@ const getCountryData = function (country) {
     .then((data) => {
       renderCountry(data[0]);
       const neighbour = data[0].borders?.[0];
-      if (!neighbour) throw new Error('No neighbour found')
+      if (!neighbour) throw new Error("No neighbour found");
       // Country 2
-      return getJSON(`https://restcountries.com/v2/alpha/${neighbour}`, 'Country not found')
+      return getJSON(
+        `https://restcountries.com/v2/alpha/${neighbour}`,
+        "Country not found"
+      );
     })
     .then((data) => renderCountry(data, "neighbour"))
     .catch((err) => {
@@ -185,7 +188,6 @@ const getCountryData = function (country) {
 btn.addEventListener("click", function () {
   getCountryData("portugal");
 });
-
 
 ///////////////////////////////////////
 // Code challenge #1
@@ -219,3 +221,51 @@ whereamI(-33.933, 18.474); */
 
 ///////////////////////////////////////
 // The event loop in practice
+/* console.log('Test start'); // call stack (because its not a callback function)
+setTimeout(() => console.log('0 sec timer'), 0); // callback queue
+Promise.resolve('Resolved promise 1').then(res => console.log(res)); // microtask queue
+
+Promise.resolve('Resolved promise 2').then(res => {
+  for(let i = 0; i< 100000; i++) {}
+  console.log(res)
+})
+
+console.log('Test end'); */ // call stack (because its not a callback function)
+// we cannot do high precision things using js timer
+
+///////////////////////////////////////
+// Building a simple promise
+const lotteryPromise = new Promise(function (resolve, reject) {
+  //executor
+  console.log("Lotter draw is happening... 🔮");
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve("You win 💰");
+    } else {
+      reject(new Error("You lost your money 💩"));
+    }
+  }, 2000);
+});
+
+lotteryPromise
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+// promisifying means to convert callback based asynchronous behavior to promise based
+// Promisifying setTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(2)
+.then(() => {
+  console.log(`I waited for 2 seconds`);
+  return wait(1);
+})
+.then(() => console.log('I waited for 1 second'))
+
+// creating a fullfilled ou rejected promise immediately - static method
+Promise.resolve('I did NOT have to wait').then(res => console.log(res))
+Promise.reject(new Error('Problem!')).catch(res => console.error(res))
