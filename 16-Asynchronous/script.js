@@ -182,16 +182,16 @@ const getCountryData = function (country) {
     }); // it will be called ALWAYS, no matters the promise be fullfilled or rejected, eg hidding a spine
 };
 
-/* btn.addEventListener("click", function () {
-  getCountryData("australia");
+btn.addEventListener("click", function () {
+  getCountryData("portugal");
 });
- */
+
 
 ///////////////////////////////////////
 // Code challenge #1
 // API url: http://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}$longitude=${}
 
-const whereamI = function(lat, long, errorMsg='Something went wrong'){
+/* const whereamI = function(lat, long, errorMsg='Something went wrong'){
   fetch(`http://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}`, {cache: "no-store"})
   .then(response => {
     if (!response.ok) throw new Error(`${errorMsg} (${response.status})`)
@@ -205,4 +205,17 @@ const whereamI = function(lat, long, errorMsg='Something went wrong'){
   .catch(err => console.error(` 🧨🧨 ${err.message}. Try again`))  
 }
 
-whereamI(-33.933, 18.474);
+whereamI(-33.933, 18.474); */
+
+///////////////////////////////////////
+// How asynchronous js works behind the scenes
+// How can asynchronous code be executed in a non-blocking way, if there is only one thread of execution in the engine?
+// Web api: where asynchronous tasks run;
+// after the event is listened, the callback functions go to callback queue, to the end of the line
+// event loop: look if the call stack is empty or no (exception the global execution context) and if no code is being executed, then it takes the first callback in the callback queue and put it into the call stack to be executed - EVENT LOOP TIC
+// event loop: decides when each callback is executed: orchestration
+// callbacks related to promises (eg then) actually do NOT go to callback queue. instead callbacks of promises have a special queue for themselves: microtasks queue. Has PRIORITY over callback queue.
+// callbacks from promises is called microtasks
+
+///////////////////////////////////////
+// The event loop in practice
