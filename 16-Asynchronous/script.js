@@ -326,16 +326,26 @@ const getPosition = function() {
 
 // remember that there is callback hell and handle promises
 const whereAmI = async function(country) {
+  try 
   // Geolocation
-  const pos = await getPosition();
+  {const pos = await getPosition();
   const {latitude: lat, longitude: lng} = pos.coords;
   // Reverse geocoding
   const resGeo = await fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}')
+  if(!resGeo.ok) throw new Error("Problem getting location data")
   const dataGeo = await resGeo.json();
   // Country data
   const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.countryName.toLowerCase()}`); // it will stop the code execution of this function until the promise is fullfilled, but it looks now like normal synchronous code. We simply assign values to variables
+  if(!res.ok) throw new Error('Problem getting country')
   const data = await res.json();
-  renderCountry(data[0])
+  renderCountry(data[0])} catch(err) {
+    console.error(err)
+    renderError(`🧨💣 ${err.message}`)
+  }
 }
 whereAmI()
 
+
+///////////////////////////////////////
+// Error handling with try... catch
+// remember that fetch() only gets rejected when user has no internet connection. in case of 403 or 404, the fetch promise doesnt reject and so we have to do it manually
