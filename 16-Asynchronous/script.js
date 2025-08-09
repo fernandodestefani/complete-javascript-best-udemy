@@ -63,7 +63,7 @@ const renderCountry = function (data, className = "") {
       </article>
   `;
   countriesContainer.insertAdjacentHTML("beforeend", html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 /* const getCountryAndNeighbour = function (country) {
@@ -153,8 +153,8 @@ const getJSON = function (url, errorMsg = "Something went wrong") {
 // Handling rejected promises
 /* btn.addEventListener("click", function () {
   getCountryData("portugal");
-}); */
-// two ways of handling:
+});
+ */// two ways of handling:
 // 1 - pass a second callback function in the then method (the first one will be called always that a promise is fullfilled) (fullfilled(), rejected())
 // 2 - handle all erros by adding catch method at the end of the chain
 
@@ -273,7 +273,7 @@ wait(2)
 ///////////////////////////////////////
 // Coding challenge #2
 // Part 1
-const createImage = function (imgPath) {
+/* const createImage = function (imgPath) {
   return new Promise(function (resolve, reject) {
     const newImg = document.createElement("img");
     newImg.src = imgPath;
@@ -314,4 +314,28 @@ createImage("img/img-1.jpg")
 .then(() => {
   currentImg.style.display = 'none'
 })
-.catch(err => console.error(err.message));
+.catch(err => console.error(err.message)); */
+
+///////////////////////////////////////
+// Consuming promises with async/await
+const getPosition = function() {
+  return new Promise(function(resolve, reject){
+    navigator.geolocation.getCurrentPosition(resolve, reject)
+  })
+}
+
+// remember that there is callback hell and handle promises
+const whereAmI = async function(country) {
+  // Geolocation
+  const pos = await getPosition();
+  const {latitude: lat, longitude: lng} = pos.coords;
+  // Reverse geocoding
+  const resGeo = await fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}')
+  const dataGeo = await resGeo.json();
+  // Country data
+  const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.countryName.toLowerCase()}`); // it will stop the code execution of this function until the promise is fullfilled, but it looks now like normal synchronous code. We simply assign values to variables
+  const data = await res.json();
+  renderCountry(data[0])
+}
+whereAmI()
+
