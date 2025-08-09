@@ -341,6 +341,9 @@ const whereAmI = async function(country) {
   renderCountry(data[0])} catch(err) {
     console.error(err)
     renderError(`🧨💣 ${err.message}`)
+
+    // Reject promise returned from async function
+    throw err;
   }
 }
 whereAmI()
@@ -349,3 +352,9 @@ whereAmI()
 ///////////////////////////////////////
 // Error handling with try... catch
 // remember that fetch() only gets rejected when user has no internet connection. in case of 403 or 404, the fetch promise doesnt reject and so we have to do it manually
+
+///////////////////////////////////////
+// Returning values from async functions
+// async functiona always returns a promise. so if we explicitly return a value, this will become the fullfilled value of a promise
+// if it is still an error in a async function, the promise that returns is still fullfilled and not rejected. to solve this we have to rethrow an error from reject an async function
+
