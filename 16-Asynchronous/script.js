@@ -451,7 +451,7 @@ const loadNPause = async function(){
 // Part 2
 const loadAll = async function(imgArr){
   try {
-    const imgs = await Promise.all(imgArr.map(img => createImage(img))) 
+    const imgs = await Promise.all(imgArr.map(async img => await createImage(img))) 
     console.log(imgs)
     imgs.forEach(img => img.classList.add('parallel'))
 
