@@ -358,3 +358,33 @@ whereAmI()
 // async functiona always returns a promise. so if we explicitly return a value, this will become the fullfilled value of a promise
 // if it is still an error in a async function, the promise that returns is still fullfilled and not rejected. to solve this we have to rethrow an error from reject an async function
 
+///////////////////////////////////////
+// Running promises in parallel
+// Never work with an async function without try and catch...
+const get3Countries = async function(c1, c2, c3) {
+  try {
+    /* const [data1] = await getJSON(`https://restcountries.com/v2/name/${c1}`)
+    const [data2] = await getJSON(`https://restcountries.com/v2/name/${c2}`)
+    const [data3] = await getJSON(`https://restcountries.com/v2/name/${c3}`)
+    console.log([data1.capital, data2.capital, data3.capital]);
+ */
+    
+    // To run in parallel
+    // helper function in the promise constructor - a static method
+    const data = await Promise.all([
+      getJSON(`https://restcountries.com/v2/name/${c1}`),
+      getJSON(`https://restcountries.com/v2/name/${c2}`),
+      getJSON(`https://restcountries.com/v2/name/${c3}`),
+    ])
+    console.log(data.map(d => d[0].capital));
+
+  } catch(err) {
+    console.error(err);
+  }
+}
+
+get3Countries('portugal', 'canada', 'tanzania')
+// this doesnt make much sense, because we are running interdependents functions one after other instead of in parallel. why should data2 await for data1 to end? so instead of running them in sequence we can ran in parallel to save valuable loading time. however when 1 promise rejects, the whole promise.all() rejects as well
+
+///////////////////////////////////////
+// Coding challenge #3
