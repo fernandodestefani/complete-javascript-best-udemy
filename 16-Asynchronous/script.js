@@ -47,7 +47,7 @@ getCountryData('brazil'); */
 
 ///////////////////////////////////////
 // Wellcome to callback hell
-const renderCountry = function (data, className = "") {
+/* const renderCountry = function (data, className = "") {
   const html = `
     <article class="country ${className}">
       <img class="country__img" src="${data.flag}" />
@@ -65,7 +65,7 @@ const renderCountry = function (data, className = "") {
   countriesContainer.insertAdjacentHTML("beforeend", html);
   countriesContainer.style.opacity = 1;
 };
-
+ */
 /* const getCountryAndNeighbour = function (country) {
   // AJAX call country 1
   const request = new XMLHttpRequest();
@@ -111,7 +111,7 @@ const renderCountry = function (data, className = "") {
   })
 } */
 
-const renderError = function (msg) {
+/* const renderError = function (msg) {
   countriesContainer.insertAdjacentText("beforeend", msg);
   // countriesContainer.style.opacity = 1;
 };
@@ -122,7 +122,7 @@ const getJSON = function (url, errorMsg = "Something went wrong") {
     return response.json();
   });
 };
-
+ */
 /* const getCountryData = function (country) {
   // Country 1
   fetch(`https://restcountries.com/v2/name/${country}`, { cache: "no-store" })
@@ -162,7 +162,7 @@ const getJSON = function (url, errorMsg = "Something went wrong") {
 // Throwing errors manually
 // fetch doesnt reject some cases, so we have to do it manually
 
-const getCountryData = function (country) {
+/* const getCountryData = function (country) {
   // Country 1
   getJSON(`https://restcountries.com/v2/name/${country}`, "Country not found")
     .then((data) => {
@@ -182,8 +182,8 @@ const getCountryData = function (country) {
     })
     .finally(() => {
       countriesContainer.style.opacity = 1;
-    }); // it will be called ALWAYS, no matters the promise be fullfilled or rejected, eg hidding a spine
-};
+    }); */ // it will be called ALWAYS, no matters the promise be fullfilled or rejected, eg hidding a spine
+//};
 
 /* btn.addEventListener("click", function () {
   getCountryData("portugal");
@@ -318,14 +318,14 @@ createImage("img/img-1.jpg")
 
 ///////////////////////////////////////
 // Consuming promises with async/await
-const getPosition = function() {
+/* const getPosition = function() {
   return new Promise(function(resolve, reject){
     navigator.geolocation.getCurrentPosition(resolve, reject)
   })
-}
+} */
 
 // remember that there is callback hell and handle promises
-const whereAmI = async function(country) {
+/* const whereAmI = async function(country) {
   try 
   // Geolocation
   {const pos = await getPosition();
@@ -346,7 +346,7 @@ const whereAmI = async function(country) {
     throw err;
   }
 }
-whereAmI()
+whereAmI() */
 
 
 ///////////////////////////////////////
@@ -361,9 +361,9 @@ whereAmI()
 ///////////////////////////////////////
 // Running promises in parallel
 // Never work with an async function without try and catch...
-const get3Countries = async function(c1, c2, c3) {
+/* const get3Countries = async function(c1, c2, c3) {
   try {
-    /* const [data1] = await getJSON(`https://restcountries.com/v2/name/${c1}`)
+ */    /* const [data1] = await getJSON(`https://restcountries.com/v2/name/${c1}`)
     const [data2] = await getJSON(`https://restcountries.com/v2/name/${c2}`)
     const [data3] = await getJSON(`https://restcountries.com/v2/name/${c3}`)
     console.log([data1.capital, data2.capital, data3.capital]);
@@ -371,6 +371,7 @@ const get3Countries = async function(c1, c2, c3) {
     
     // To run in parallel
     // helper function in the promise constructor - a static method
+/*     
     const data = await Promise.all([
       getJSON(`https://restcountries.com/v2/name/${c1}`),
       getJSON(`https://restcountries.com/v2/name/${c2}`),
@@ -383,8 +384,80 @@ const get3Countries = async function(c1, c2, c3) {
   }
 }
 
-get3Countries('portugal', 'canada', 'tanzania')
+get3Countries('portugal', 'canada', 'tanzania') */
 // this doesnt make much sense, because we are running interdependents functions one after other instead of in parallel. why should data2 await for data1 to end? so instead of running them in sequence we can ran in parallel to save valuable loading time. however when 1 promise rejects, the whole promise.all() rejects as well
 
 ///////////////////////////////////////
 // Coding challenge #3
+// Part 1
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const newImg = document.createElement("img");
+    newImg.src = imgPath;
+    // resolve
+    newImg.addEventListener("load", function () {
+      document.querySelector(".images").append(newImg);
+      resolve(newImg)
+    });
+    // reject
+    newImg.addEventListener('error', function(){
+      reject(new Error("Error loading the image 🧨"));
+    })
+  });
+};
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+// let currentImg;
+
+/* createImage("img/img-1.jpg")
+.then(img => {
+  currentImg = img;
+  return wait(2);
+})
+.then(() => {
+  currentImg.style.display = 'none';
+  return createImage("img/img-2.jpg");
+})
+.then((img) => {
+  currentImg = img;
+  return wait(2)
+})
+.then(() => {
+  currentImg.style.display = 'none'
+})
+.catch(err => console.error(err.message));
+ */
+
+
+const loadNPause = async function(){
+  try {
+    let currentImg = await createImage('img/img-1.jpg');    
+    await wait(2);
+    currentImg.style.display = 'none'
+    currentImg = await createImage("img/img-2.jpg")
+    await wait(2);
+    currentImg.style.display = 'none';  
+  } catch(err) {
+    console.error(err);
+  }
+}
+
+// loadNPause();
+
+// Part 2
+const loadAll = async function(imgArr){
+  try {
+    const imgs = await Promise.all(imgArr.map(img => createImage(img))) 
+    console.log(imgs)
+    imgs.forEach(img => img.classList.add('parallel'))
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg'])
