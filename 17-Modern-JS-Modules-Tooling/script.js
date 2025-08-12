@@ -10,3 +10,13 @@
 
 ////////////////////////////////////
 // overview of modules in js
+// public API is what we export from modules 
+// native js (ES6) modules: modules stored in files, exactly one module per file.
+// imports and exports need to happen at top-level, outside of any function or any if block. imports are hoisted
+// html linking <script type='module'>
+// importing modules before execution 
+// modules are imported synchronously, which is possible thanks to top-level ('static') imports, which make imports known before execution. this makes bundling and dead code elimination possible
+
+////////////////////////////////////
+// exporting and importing in es6 modules
+
