@@ -20,3 +20,25 @@
 ////////////////////////////////////
 // exporting and importing in es6 modules
 
+// importing module - named exports
+/* import { addToCart, totalPrice as price, tq } from "./shoppingCart.js";
+
+// console.log(shippingCost);
+addToCart('bread', 5);
+console.log(price, tq); */
+
+// importing everything at the same time
+/* import * as ShoppingCart from './shoppingCart.js';
+ShoppingCart.addToCart('bread', 5);
+console.log(ShoppingCart.totalPrice); */
+
+console.log('Importing module');
+// importing the default export no matter how its called
+import add from './shoppingCart.js';
+add('pizza', 2);
+add('bread', 5);
+add('apples', 4);
+
+// imports are in fact a live connection to exports, which means that they both point to the same place in memory 
+import { cart } from './shoppingCart.js';
+console.log(cart);
