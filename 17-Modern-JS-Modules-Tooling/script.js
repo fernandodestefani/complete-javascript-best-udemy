@@ -42,3 +42,29 @@ add('apples', 4);
 // imports are in fact a live connection to exports, which means that they both point to the same place in memory 
 import { cart } from './shoppingCart.js';
 console.log(cart);
+
+////////////////////////////////////
+// top-level await (ES2022) - outside of an async function. many times can be harmful, because it blocks the execution
+/* 
+const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+const data = await res.json();
+console.log(data); 
+*/
+
+const getLastPost = async function() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  const data = await res.json();
+  return {title: data.at(-1).title, text: data.at(-1).body}
+}
+
+const lastPost = getLastPost();
+console.log(lastPost);
+
+// Not very clean
+// lastPost.then(last => console.log(last));
+
+const lastPost2 = await getLastPost();
+console.log(lastPost2);
+
+// the code in the script has to wait for the code in the shoppingCart.js to finish because of the top level await that blocks the execution not only of its own module but the module that is importing it.
+ 
