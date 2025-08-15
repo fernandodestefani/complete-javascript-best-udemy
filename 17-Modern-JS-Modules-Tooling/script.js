@@ -88,3 +88,36 @@ del => delete
 mv file location => move
 rmdir folder => remove folder
 */
+
+////////////////////////////////////
+// Introduction to NPM (node package manager)
+// manage our dependencies in a better and modern way
+// npm -v check if it is installed and its version
+// nodejs.org/en/
+// npm init => package.json
+// npm install name of the package => creates a dependencie in the package-json and a folder called node_modules
+// lodash: a modern js utility library 
+// npm i lodash-es
+// importing from lodash
+import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+
+const state = {
+  cart: [
+    {product: 'bread', quantity: 5},
+    {product: 'pizza', quantity: 5}
+  ],
+  user: {loggedIn: true}, 
+} 
+
+const stateClone = Object.assign({}, state);
+const stateDeepClone = cloneDeep(state);
+state.user.loggedIn = false;
+console.log(stateClone); // loggedIn is equal false and not true
+// in order to create a deep clone:
+console.log(stateDeepClone); // it is still true even though we changed it in the original object
+// if we share our project with someone else we should NEVER EVER include de node_modules
+// but if this happened, I have to implement even via npm all the nodule modules again one by one? that's why package.json exists...
+// all we have to do is npm install without any package name
+
+////////////////////////////////////
+// bundling with parcel and npm scripts
