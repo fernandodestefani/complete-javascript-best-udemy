@@ -67,4 +67,24 @@ const lastPost2 = await getLastPost();
 console.log(lastPost2);
 
 // the code in the script has to wait for the code in the shoppingCart.js to finish because of the top level await that blocks the execution not only of its own module but the module that is importing it.
- 
+
+////////////////////////////////////
+// A brief introduction to command line
+// all the build tools that are available on NPM only work in the command line
+// terminal in vs code or command prompt
+// we are always in folders when we initialize terminal
+// dir (directory): show the content of the current folder
+/* 
+cd: change directory: we can go up/down in the file tree
+cd .. we go up
+cd + tabkey to autocomplete the directory that you started to write and the part of the string is already unique
+clear clear the console
+mkdir + name => create a folder (stands for make directory)
+New-item + name.extension => create some file 
+up => last command typped
+live-server
+control + c => stop
+del => delete
+mv file location => move
+rmdir folder => remove folder
+*/
