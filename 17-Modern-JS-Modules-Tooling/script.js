@@ -157,3 +157,13 @@ npm i parcel -g : install globally and use it in every directory of our computer
 // import 'core-js/stable' and install npm i core-js
 // import 'core-js/stable/array/find' especifically to reduce the size of the bundle, but we usually dont do it
 // npm i regenerator-runtime and import 'regenerator-runtime/runtime' - we have to import this separatelly for pollyfilling async functions
+
+////////////////////////////////////
+// writing clean and modern js
+// use descriptive variable names: what they CONTAIN
+// use descriptive function names: what they DO
+// generally functions should do ONLY ONE thing
+// dont use more than 3 function parameters and use default parameters whenever possible
+// consume promises with async/await for best readability; 
+// whenever possible, run promises in parallel (Promises.all);
+// handle errors and promise rejections
