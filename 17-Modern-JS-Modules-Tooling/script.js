@@ -121,3 +121,27 @@ console.log(stateDeepClone); // it is still true even though we changed it in th
 
 ////////////////////////////////////
 // bundling with parcel and npm scripts
+// parcel is a bundler that works outside the box, without any configuration
+// npm i parcel --save-dev
+// devDependencie
+// npx parcel index.html (where our script.js is)
+/* 
+for parcel, we dont have to mention type=module in script tag, what is a good thing, because modules do not work in old browsers
+it creates a new folder called dist, which is destinated to production
+
+if(module.hot){
+  module.hot.accept()
+}
+this mantains the state even modifications are made in the code, without refreshing the browser
+
+we actually execute parcel by npm scripts:
+inside package.json:
+"scripts": {
+  "start": "parcel index.html"
+}
+after that we type on command line npm run start
+
+"build": "parcel build index.html" => final build, compressed and with duplicated code erased
+
+npm i parcel -g : install globally and use it in every directory of our computer - not recommended
+*/
