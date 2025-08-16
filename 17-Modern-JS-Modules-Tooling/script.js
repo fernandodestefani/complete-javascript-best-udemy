@@ -167,3 +167,16 @@ npm i parcel -g : install globally and use it in every directory of our computer
 // consume promises with async/await for best readability; 
 // whenever possible, run promises in parallel (Promises.all);
 // handle errors and promise rejections
+
+////////////////////////////////////
+// declarative and functional js principles
+// imperative: explains "HOW to do things"
+// declarative: "WHAT to do"
+/* 
+declarative syntax: use array and object destructuring, spread operator, thernary operator and template literals
+functional programming: declarative programming paradigm based on the idea of writing many pure functions, avoiding side effects and mutating data
+immutability: state (data) is never modified! Instead, state is copied and the copy is mutated and returned. 
+examples: react, redux
+use built-in methods that don't produce side effects
+do data transformations with methods such as .map(), .filter() and .reduce()
+*/
