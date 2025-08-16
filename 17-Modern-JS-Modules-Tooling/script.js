@@ -145,3 +145,15 @@ after that we type on command line npm run start
 
 npm i parcel -g : install globally and use it in every directory of our computer - not recommended
 */
+
+////////////////////////////////////
+// configuring babel and polyfilling
+
+// transpille our code to ES5 code
+// we can use parcel to implement babel
+// babel works with plugins and precets (a bunch of plugins bundled together)
+// babel can only transpile es6 syntax, like arr functions
+// for new features, such as promises and array methods eg, we can polyfilling them by importing this library:
+// import 'core-js/stable' and install npm i core-js
+// import 'core-js/stable/array/find' especifically to reduce the size of the bundle, but we usually dont do it
+// npm i regenerator-runtime and import 'regenerator-runtime/runtime' - we have to import this separatelly for pollyfilling async functions
